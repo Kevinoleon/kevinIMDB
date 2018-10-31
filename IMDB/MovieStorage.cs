@@ -1,11 +1,12 @@
 ﻿using IMDB.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IMDB
 {
     public class MovieStorage
     {
-        public ISet<Movie> MovieList { get; set; }
+        public static ISet<Movie> MovieList = new HashSet<Movie>();
         public Movie ClonedMovie { get; set; }
 
         //public MovieStorage()
@@ -25,11 +26,13 @@ namespace IMDB
         }
         public static ISet<Movie> GetAll()
         {
-            return null;
+            var result = new HashSet<Movie>(MovieList.Select(Clone));
+            return result;
         }
-        public static ISet<Movie> GetByName(string name, int pageIndex, int PageSize)
+        public static IList<Movie> GetByName(string name, int pageIndex, int PageSize)
         {
-            return null;
+
+            return MovieList.Where(m => m.OriginalTitle == name).OrderBy(m => m.OriginalTitle).ThenBy(m => m.ReleaseDate).Skip(PageSize * pageIndex).Take(PageSize).Select(Clone).ToList();
         }
         public static ISet<Movie> GetById(int id)
         {
