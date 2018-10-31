@@ -2,6 +2,7 @@
 {
     public class Movie
         {
+            public int? Id { get; set; }
             public string OriginalTitle { get; set; }
             public string ReleaseDate { get; set; }
             public string Country { get; set; }

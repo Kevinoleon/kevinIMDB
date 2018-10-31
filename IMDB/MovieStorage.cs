@@ -6,45 +6,77 @@ namespace IMDB
 {
     public class MovieStorage
     {
-        public static ISet<Movie> MovieList = new HashSet<Movie>();
-        public Movie ClonedMovie { get; set; }
+        private static readonly ISet<Movie> movies = new HashSet<Movie>();
+
+        //internal static int GetCount()
+        //{
+        //    return movies.Count;
+        //}
 
         //public MovieStorage()
         //{
         //    ClonedMovie = new Movie("","","");
 
-            
+
         //}
 
-        private static Movie Clone(Movie source)
+        private static Movie Clone(Movie sourceMovie)
         {
-            Movie clon = new Movie();
-            clon.OriginalTitle = source.OriginalTitle;
-            clon.ReleaseDate = source.ReleaseDate;
-            clon.Country = source.Country;
-            return clon;
+            Movie newMovie = new Movie();
+            Map(sourceMovie, newMovie);
+            return newMovie;
+        }
+
+        private static void Map(Movie sourceMovie, Movie destinationMovie)
+        {
+            destinationMovie.Country = sourceMovie.Country;
+            destinationMovie.OriginalTitle = sourceMovie.OriginalTitle;
+            destinationMovie.ReleaseDate = sourceMovie.ReleaseDate;
         }
         public static ISet<Movie> GetAll()
         {
-            var result = new HashSet<Movie>(MovieList.Select(Clone));
+            var result = new HashSet<Movie>(movies.Select(Clone));
             return result;
         }
         public static IList<Movie> GetByName(string name, int pageIndex, int PageSize)
         {
 
-            return MovieList.Where(m => m.OriginalTitle == name).OrderBy(m => m.OriginalTitle).ThenBy(m => m.ReleaseDate).Skip(PageSize * pageIndex).Take(PageSize).Select(Clone).ToList();
+            return movies.Where(m => m.OriginalTitle == name).OrderBy(m => m.OriginalTitle).ThenBy(m => m.ReleaseDate).Skip(PageSize * pageIndex).Take(PageSize).Select(Clone).ToList();
         }
-        public static ISet<Movie> GetById(int id)
+        public static Movie GetById(int id)
         {
-            return null;
+            Movie Result = movies.Single(m => m.Id == id);
+            return Clone(Result);
+            //Where(m => m.Id == id)
+            //.OrderBy(m => m.OriginalTitle).
+            //ThenBy(m => m.ReleaseDate).
+            //Skip(PageSize * pageIndex).
+            //Take(PageSize)
+            //.Select(Clone).ToList(); ;
         }
-        public static ISet<Movie> Save(Movie updatedMovie)
+        public static void Save(Movie updatedMovie)
         {
-            return null;
+            Movie storageMovie = movies.FirstOrDefault(m => m.Id == updatedMovie.Id);
+
+            if (storageMovie != null)
+            {
+                Map(updatedMovie, storageMovie);
+
+            }
+            else
+            {
+                updatedMovie.Id = movies.Max(m => m.Id)?? 0 + 1;
+                movies.Add(Clone(updatedMovie));
+            }
+
         }
-        public static ISet<Movie> Delete(int id)
+        public static void Delete(int id)
         {
-            return null;
+            var movie = movies.FirstOrDefault(m => m.Id == id);
+            if (movie != null)
+            {
+                movies.Remove(movie);
+            }
         }
 
 
