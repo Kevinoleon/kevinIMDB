@@ -65,7 +65,7 @@ namespace IMDB
             }
             else
             {
-                updatedMovie.Id = movies.Max(m => m.Id)?? 0 + 1;
+                updatedMovie.Id = movies.Max(m => m.Id) + 1;
                 movies.Add(Clone(updatedMovie));
             }
 

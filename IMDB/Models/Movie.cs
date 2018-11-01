@@ -2,12 +2,12 @@
 {
     public class Movie
         {
-            public int? Id { get; set; }
+            public int Id { get; set; }
             public string OriginalTitle { get; set; }
             public string ReleaseDate { get; set; }
             public string Country { get; set; }
 
-            public static int ContadorDeObj { get; set; }
+            //public static int ContadorDeObj { get; set; }
 
         //public string Poster { get; set; }
         //public IList<Actor> Actores { get; set; }

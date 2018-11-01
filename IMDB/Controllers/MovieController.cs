@@ -5,20 +5,29 @@ namespace IMDB.Controllers
 {
     public class MovieController : Controller
     {
-        private const int PageSize = 5;
+        //private const int PageSize = 5;
 
         // GET: Movie
-        public ActionResult Index(string query, int? pageIndex)
+        public ActionResult Index(/*string query, int? pageIndex*/)
         {
-            var pageInfo = new MoviePageInfo
-            {
-                PageItems = MovieStorage.GetByName(query, pageIndex ?? 0, PageSize),
-                PageIndex = pageIndex ?? 0,
-                PageCount = MovieStorage.GetCount() / PageSize + 1,
-                SearchCriteria = query
-            };
+            var movies = MovieStorage.GetAll();
+            
 
-            return View("edit", pageInfo);
+
+            //---------------version sergio-----------------    
+            //var pageInfo = new MoviePageInfo
+            //{
+            //    PageItems = MovieStorage.GetByName(query, pageIndex ?? 0, PageSize),
+            //    PageIndex = pageIndex ?? 0,
+            //    PageCount = MovieStorage.GetCount() / PageSize + 1,
+            //    SearchCriteria = query
+            //};
+
+            //return View("edit", pageInfo);
+            //-------------------------------------------------
+
+            return View(movies);
+
         }
 
         // GET: Movie/Details/5
@@ -30,23 +39,17 @@ namespace IMDB.Controllers
         // GET: Movie/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
         // POST: Movie/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Movie newMovie)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            
+            MovieStorage.Save(newMovie);            
+            return RedirectToAction("Index");
         }
 
         // GET: Movie/Edit/5
