@@ -23,6 +23,7 @@ namespace IMDB
         private static Movie Clone(Movie sourceMovie)
         {
             Movie newMovie = new Movie();
+            newMovie.Id = sourceMovie.Id;
             Map(sourceMovie, newMovie);
             return newMovie;
         }
@@ -65,7 +66,10 @@ namespace IMDB
             }
             else
             {
-                updatedMovie.Id = movies.Max(m => m.Id) + 1;
+                //updatedMovie.Id = movies.Max(m => m.Id) + 1;
+                //updatedMovie.Id = movies.DefaultIfEmpty().Max(m => m==null ? 0:m.Id) + 1;
+                //updatedMovie.Id = movies.DefaultIfEmpty().Max(m => m.Id? ) + 1;
+                updatedMovie.Id = (movies.Count == 0 ? 0 : movies.Max(m => m.Id)) + 1;
                 movies.Add(Clone(updatedMovie));
             }
 
