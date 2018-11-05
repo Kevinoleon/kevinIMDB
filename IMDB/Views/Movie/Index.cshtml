@@ -9,6 +9,10 @@
 
 <p class="lead">
     @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "Movie", FormMethod.Get))
+    {
+        @Html.TextBox("SearchString")<input type="submit" value="Filter" />
+    }
 </p>
 <table class="table lead table-hover ">
     <tr >

@@ -1,4 +1,5 @@
 ﻿using IMDB.Models;
+using System;
 using System.Web.Mvc;
 
 namespace IMDB.Controllers
@@ -8,10 +9,16 @@ namespace IMDB.Controllers
         //private const int PageSize = 5;
 
         // GET: Movie
-        public ActionResult Index(/*string query, int? pageIndex*/)
+        public ActionResult Index(string searchString)
         {
+            //string searchString = id;
             var movies = MovieStorage.GetAll();
-            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = MovieStorage.GetByName(searchString);
+            }
+            return View(movies);
+        
 
 
             //---------------version sergio-----------------    
@@ -25,9 +32,7 @@ namespace IMDB.Controllers
 
             //return View("edit", pageInfo);
             //-------------------------------------------------
-
-            return View(movies);
-
+            
         }
 
         // GET: Movie/Details/5

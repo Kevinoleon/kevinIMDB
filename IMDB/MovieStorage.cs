@@ -39,10 +39,12 @@ namespace IMDB
             var result = new HashSet<Movie>(movies.Select(Clone));
             return result;
         }
-        public static IList<Movie> GetByName(string name, int pageIndex, int PageSize)
+        public static ISet<Movie> GetByName(string title/*, int pageIndex, int pageSize*/)
         {
-
-            return movies.Where(m => m.OriginalTitle == name).OrderBy(m => m.OriginalTitle).ThenBy(m => m.ReleaseDate).Skip(PageSize * pageIndex).Take(PageSize).Select(Clone).ToList();
+            var result = new HashSet<Movie>(movies.Where(m => m.OriginalTitle == title)
+                .OrderBy(m => m.OriginalTitle).ThenBy(m => m.Id).Select(Clone));
+            return result;
+            //return movies.Where(m => m.OriginalTitle == name).OrderBy(m => m.OriginalTitle).ThenBy(m => m.ReleaseDate).Skip(PageSize * pageIndex).Take(PageSize).Select(Clone).ToList();
         }
         public static Movie GetById(int id)
         {
