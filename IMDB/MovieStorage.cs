@@ -41,8 +41,8 @@ namespace IMDB
         }
         public static ISet<Movie> GetByName(string title/*, int pageIndex, int pageSize*/)
         {
-            var result = new HashSet<Movie>(movies.Where(m => m.OriginalTitle == title)
-                .OrderBy(m => m.OriginalTitle).ThenBy(m => m.Id).Select(Clone));
+            var result = new HashSet<Movie>(movies.Where(m => m.OriginalTitle.ToLower().Contains(title.ToLower())).
+                OrderBy(m => m.OriginalTitle).ThenBy(m => m.Id).Select(Clone));
             return result;
             //return movies.Where(m => m.OriginalTitle == name).OrderBy(m => m.OriginalTitle).ThenBy(m => m.ReleaseDate).Skip(PageSize * pageIndex).Take(PageSize).Select(Clone).ToList();
         }
