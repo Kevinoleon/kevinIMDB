@@ -1,5 +1,6 @@
 ﻿using IMDB.Models;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace IMDB.Controllers
@@ -12,10 +13,15 @@ namespace IMDB.Controllers
         public ActionResult Index(string searchString)
         {
             //string searchString = id;
-            var movies = MovieStorage.GetAll();
+            ISet<Movie> movies= new HashSet<Movie>();
+            
             if (!String.IsNullOrEmpty(searchString))
             {
                 movies = MovieStorage.GetByName(searchString);
+            }
+            else
+            {
+                movies = MovieStorage.GetAll();
             }
             return View(movies);
         
