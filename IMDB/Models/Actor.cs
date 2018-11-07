@@ -12,10 +12,9 @@ namespace IMDB.Models
         public DateTime DateOfBirth { get; set; }
         public int age { get
             {
-                var today = DateTime.Today;
-                
-                return today.Year - DateOfBirth.Year;
-            }
+                TimeSpan i = DateTime.Today - DateOfBirth;
+                return i.Days / 365;            
+        }
          }
         public string  Nationality { get; set; }
 
