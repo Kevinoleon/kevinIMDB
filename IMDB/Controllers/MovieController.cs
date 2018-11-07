@@ -24,7 +24,10 @@ namespace IMDB.Controllers
                 movies = MovieStorage.GetAll();
             }
             return View(movies);
-        
+
+           // var actors = String.IsNullOrEmpty(searchString)
+           //? ActorStorage.GetAll() : ActorStorage.GetByName(searchString)
+
 
 
             //---------------version sergio-----------------    
@@ -38,7 +41,7 @@ namespace IMDB.Controllers
 
             //return View("edit", pageInfo);
             //-------------------------------------------------
-            
+
         }
 
         // GET: Movie/Details/5
