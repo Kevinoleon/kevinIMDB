@@ -23,19 +23,7 @@ namespace IMDB.Models
         //    this.ReleaseDate = rDate;
         //    this.Country = country;
         //}
-
-        public class Employee
-        {
-            public int Id { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy HH:mm}",
-                    ApplyFormatInEditMode = true)]
-            public DateTime DOB { get; set; }
-            [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy HH:mm}",
-                    ApplyFormatInEditMode = true)]
-            public DateTime JoiningDate { get; set; }
-        }
+        
     }
     
 }

@@ -1,10 +1,22 @@
-﻿namespace IMDB.Models
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace IMDB.Models
 {
     public class Actor
     {
 
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string age { get; set; }
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateOfBirth { get; set; }
+        public int age { get
+            {
+                var today = DateTime.Today;
+                
+                return today.Year - DateOfBirth.Year;
+            }
+         }
         public string  Nationality { get; set; }
 
 

@@ -1,15 +1,15 @@
-﻿@model IEnumerable<IMDB.Models.Movie>
+﻿@model IEnumerable<IMDB.Models.Actor>
 
 @{
     ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="display-1 text-center">Lista de peliculas</h2>
+<h2 class="display-1 text-center">Actor List</h2>
 
 <p class="lead">
     @Html.ActionLink("Create New", "Create")
-    @using (Html.BeginForm("Index", "Movie", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Actor", FormMethod.Get))
     {
         @Html.TextBox("SearchString")<input type="submit" value="Filter" />
     }
@@ -17,29 +17,29 @@
 <table class="table lead table-hover ">
     <tr >
         <th >
-            Original Title
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            Release Date
+            @Html.DisplayNameFor(model => model.age)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayNameFor(model => model.Nationality)
         </th>
         <th>
-            Available Options
+            Available options
         </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr >
         <td>
-            @Html.DisplayFor(modelItem => item.OriginalTitle)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
+            @Html.DisplayFor(modelItem => item.age)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Country)
+            @Html.DisplayFor(modelItem => item.Nationality)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

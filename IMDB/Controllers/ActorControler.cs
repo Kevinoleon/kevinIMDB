@@ -5,34 +5,33 @@ using System.Web.Mvc;
 
 namespace IMDB.Controllers
 {
-    public class MovieController : Controller
+    public class ActorController : Controller
     {
         //private const int PageSize = 5;
 
-        // GET: Movie
+        // GET: Actor
         public ActionResult Index(string searchString)
         {
             //string searchString = id;
-            ISet<Movie> movies= new HashSet<Movie>();
-            
+            ISet<Actor> actors = new HashSet<Actor>();
             if (!String.IsNullOrEmpty(searchString))
             {
-                movies = MovieStorage.GetByName(searchString);
+                actors = ActorStorage.GetByName(searchString);
             }
             else
             {
-                movies = MovieStorage.GetAll();
+                actors = ActorStorage.GetAll();
             }
-            return View(movies);
+            return View(actors);
         
 
 
             //---------------version sergio-----------------    
-            //var pageInfo = new MoviePageInfo
+            //var pageInfo = new ActorPageInfo
             //{
-            //    PageItems = MovieStorage.GetByName(query, pageIndex ?? 0, PageSize),
+            //    PageItems = ActorStorage.GetByName(query, pageIndex ?? 0, PageSize),
             //    PageIndex = pageIndex ?? 0,
-            //    PageCount = MovieStorage.GetCount() / PageSize + 1,
+            //    PageCount = ActorStorage.GetCount() / PageSize + 1,
             //    SearchCriteria = query
             //};
 
@@ -41,59 +40,59 @@ namespace IMDB.Controllers
             
         }
 
-        // GET: Movie/Details/5
+        // GET: Actor/Details/5
         public ActionResult Details(int id)
         {
-            var Movie = MovieStorage.GetById(id);
-            return View(Movie);
+            var Actor = ActorStorage.GetById(id);
+            return View(Actor);
         }
 
-        // GET: Movie/Create
+        // GET: Actor/Create
         public ActionResult Create()
         {
             
             return View();
         }
 
-        // POST: Movie/Create
+        // POST: Actor/Create
         [HttpPost]
-        public ActionResult Create(Movie newMovie)
+        public ActionResult Create(Actor newActor)
         {
             
-            MovieStorage.Save(newMovie);            
+            ActorStorage.Save(newActor);            
             return RedirectToAction("Index");
         }
 
-        // GET: Movie/Edit/5
+        // GET: Actor/Edit/5
         public ActionResult Edit(int id)
         {
-            var MovietoEdit = MovieStorage.GetById(id);
-            return View(MovietoEdit);
+            var ActortoEdit = ActorStorage.GetById(id);
+            return View(ActortoEdit);
         }
 
-        // POST: Movie/Edit/5
+        // POST: Actor/Edit/5
         [HttpPost]
-        public ActionResult Edit(Movie movieToEdit)
+        public ActionResult Edit(Actor actorToEdit)
         {
 
-            MovieStorage.Save(movieToEdit);
+            ActorStorage.Save(actorToEdit);
 
             return RedirectToAction("Index");
             
         }
 
-        // GET: Movie/Delete/5
+        // GET: Actor/Delete/5
         public ActionResult Delete(int id)
         {
-            var MovietoEdit = MovieStorage.GetById(id);
-            return View(MovietoEdit);
+            var ActortoEdit = ActorStorage.GetById(id);
+            return View(ActortoEdit);
         }
 
-        // POST: Movie/Delete/5
+        // POST: Actor/Delete/5
         [HttpPost]
-        public ActionResult Delete(Movie movieToDelete)
+        public ActionResult Delete(Actor actorToDelete)
         {
-            MovieStorage.Delete(movieToDelete.Id);
+            ActorStorage.Delete(actorToDelete.Id);
             return RedirectToAction("Index");
         }
     }
