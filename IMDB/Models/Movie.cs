@@ -1,15 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace IMDB.Models
 {
-    public class Movie
+    public class Movie : Entity
         {
-            public int Id { get; set; }
+
+            private ISet<MovieRole> movieRoles;
+
+            public override Type EntityType
+            {
+                get { return typeof(Movie); }
+            }
             public string OriginalTitle { get; set; }
+
             [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
             public DateTime ReleaseDate { get; set; }
             public string Country { get; set; }
+            public ISet<MovieRole> MovieRoles
+            {
+                get { return movieRoles ?? (movieRoles = new HashSet<MovieRole>()); }
+                set { movieRoles = value; }
+            }
 
         //public static int ContadorDeObj { get; set; }
 
@@ -23,7 +36,7 @@ namespace IMDB.Models
         //    this.ReleaseDate = rDate;
         //    this.Country = country;
         //}
-        
+
     }
     
 }
