@@ -13,12 +13,12 @@ namespace IMDB.Models
             {
                 get { return typeof(Movie); }
             }
-            public string OriginalTitle { get; set; }
+            public virtual string OriginalTitle { get; set; }
 
             [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
-            public DateTime ReleaseDate { get; set; }
-            public string Country { get; set; }
-            public ISet<MovieRole> MovieRoles
+            public virtual DateTime ReleaseDate { get; set; }
+            public virtual string Country { get; set; }
+            public virtual  ISet<MovieRole> MovieRoles
             {
                 get { return movieRoles ?? (movieRoles = new HashSet<MovieRole>()); }
                 set { movieRoles = value; }

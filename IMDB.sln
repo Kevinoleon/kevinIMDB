@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB", "IMDB\IMDB.csproj", "{754A33CC-E4A3-4603-8E06-711586447722}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IMDBDB", "IMDBDB\IMDBDB.sqlproj", "{6E40D03D-5EC9-48C5-90B4-D097D3B4F012}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Support", "..\bootcamp-master\material\NHibernate\Code\ContosoUniversity.NHibernate\NHibernate.Support.csproj", "{7C24E4B3-910F-40B3-B8C0-8EC53021A5F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,16 @@ Global
 		{754A33CC-E4A3-4603-8E06-711586447722}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{754A33CC-E4A3-4603-8E06-711586447722}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{754A33CC-E4A3-4603-8E06-711586447722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E40D03D-5EC9-48C5-90B4-D097D3B4F012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E40D03D-5EC9-48C5-90B4-D097D3B4F012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E40D03D-5EC9-48C5-90B4-D097D3B4F012}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6E40D03D-5EC9-48C5-90B4-D097D3B4F012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E40D03D-5EC9-48C5-90B4-D097D3B4F012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E40D03D-5EC9-48C5-90B4-D097D3B4F012}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7C24E4B3-910F-40B3-B8C0-8EC53021A5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C24E4B3-910F-40B3-B8C0-8EC53021A5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C24E4B3-910F-40B3-B8C0-8EC53021A5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C24E4B3-910F-40B3-B8C0-8EC53021A5F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

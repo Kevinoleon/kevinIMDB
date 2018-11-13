@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Actor]
+(
+	[Id-Actor] INT NOT NULL PRIMARY KEY, 
+	[Name] NVARCHAR(50) NOT NULL, 
+	[DateOfBirth] DATETIME NOT NULL, 
+	[Nationality] NVARCHAR(50) NOT NULL
+)

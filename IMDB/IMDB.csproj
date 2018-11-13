@@ -77,6 +77,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NHibernate">
+      <HintPath>..\..\bootcamp-master\material\NHibernate\Code\ContosoUniversity.NHibernate\bin\Debug\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -211,6 +214,7 @@
     <Compile Include="Models\MoviePageInfo.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="ActorStorage.cs" />
+    <Compile Include="Models\MovieRole.cs" />
     <Compile Include="MovieStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -297,6 +301,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\bootcamp-master\material\NHibernate\Code\ContosoUniversity.NHibernate\NHibernate.Support.csproj">
+      <Project>{7c24e4b3-910f-40b3-b8c0-8ec53021a5f3}</Project>
+      <Name>NHibernate.Support</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

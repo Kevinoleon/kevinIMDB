@@ -4,7 +4,7 @@ namespace IMDB.Models
 {
     public abstract class Entity
     {
-        public int Id
+        public virtual int Id
         {
             get;
             set;
@@ -14,31 +14,35 @@ namespace IMDB.Models
         {
             get;
         }
+        public virtual bool IsPersisted
+        {
+            get { return this.Id != 0; }
+        }
 
         public override bool Equals(object obj)
         {
-            if (obj == this)
+            if (ReferenceEquals(this, obj))
             {
                 return true;
             }
 
-            if (obj == null)
+            if (!this.IsPersisted)
             {
                 return false;
             }
 
-            if (this.Id == 0)
+            var that = obj as Entity;
+            if (that == null)
             {
                 return false;
             }
 
-            Entity other = obj as Entity;
-            if (other == null)
+            if (this.EntityType != that.EntityType)
             {
                 return false;
             }
 
-            return this.Id == other.Id && this.EntityType == other.EntityType;
+            return object.Equals(this.Id, that.Id);
         }
 
         public override int GetHashCode()
