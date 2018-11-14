@@ -1,9 +1,8 @@
-﻿using global::NHibernate.Mapping.ByCode.Conformist;
-using IMDB.Models;
-using NHibernate.Mapping.ByCode;
-
-namespace IMDB.NHibernate
+﻿namespace ContosoUniversity.NHibernate.ClassMappings
 {
+    using global::NHibernate.Mapping.ByCode;
+    using global::NHibernate.Mapping.ByCode.Conformist;
+    using IMDB.Models;
     public class MovieMapping : ClassMapping<Movie>
     {
         public MovieMapping()
@@ -49,7 +48,22 @@ namespace IMDB.NHibernate
                     m.Length(50);
                 });
 
+            // one-to-many
             this.Set(
+                e => e.MovieRoles,
+                cm =>
+                {
+                    // NOTE: inverse true should only be used to map a bidirectional relationship (the other overload should be used for that).
+                    // See answer by Stefan Steinegger on https://stackoverflow.com/questions/1061179/when-to-use-inverse-false-on-nhibernate-hibernate-onetomany-relationships
+                    //cm.Inverse(true);
+                    cm.Lazy(CollectionLazy.Lazy);
+                    cm.Cascade(Cascade.All | Cascade.DeleteOrphans);
+                    cm.Key(k => k.Column(col => col.Name("Id-Movie"))); // the column on the other table that points back at this entity
+                },
+                m => m.OneToMany());
+
+            /* esto solo lo dejo por si las dudas
+                this.Set(
                 e => e.MovieRoles,
                 m =>
                 {
@@ -60,6 +74,8 @@ namespace IMDB.NHibernate
                     m.Key(k => k.Column("Id-Movie"));
                 },
                 r => r.ManyToMany(p => p.Column("Id-Actor")));
+
+            */
         }
 
     }
