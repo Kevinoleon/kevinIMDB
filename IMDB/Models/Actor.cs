@@ -6,7 +6,7 @@ namespace IMDB.Models
 {
     public class Actor: Entity
     {
-        private ISet<MovieRole> movieRoles;
+        private ISet<Role> actorRoles;
 
         public override Type EntityType
         {
@@ -24,23 +24,10 @@ namespace IMDB.Models
         public virtual string  Nationality { get; set; }
 
         [Display(Name = "Roles")]
-        public virtual ISet<MovieRole> MovieRoles
+        public virtual ISet<Role> ActorRoles
         {
-            get
-            {
-                if (movieRoles == null)
-                {
-                    movieRoles = new HashSet<MovieRole>();
-                }
-
-                return movieRoles;
-            }
-            set
-            {
-                movieRoles = value;
-            }
+            get { return actorRoles ?? (actorRoles = new HashSet<Role>()); }
+            set { actorRoles = value; }
         }
-
-
-    }
+    }    
 }

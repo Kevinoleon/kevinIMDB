@@ -7,7 +7,7 @@ namespace IMDB.Models
     public class Movie : Entity
         {
 
-            private ISet<MovieRole> movieRoles;
+            private ISet<Role> movieRoles;
 
             public override Type EntityType
             {
@@ -18,9 +18,9 @@ namespace IMDB.Models
             [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
             public virtual DateTime ReleaseDate { get; set; }
             public virtual string Country { get; set; }
-            public virtual  ISet<MovieRole> MovieRoles
+            public virtual  ISet<Role> MovieRoles
             {
-                get { return movieRoles ?? (movieRoles = new HashSet<MovieRole>()); }
+                get { return movieRoles ?? (movieRoles = new HashSet<Role>()); }
                 set { movieRoles = value; }
             }
 

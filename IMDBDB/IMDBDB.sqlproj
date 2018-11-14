@@ -67,7 +67,7 @@
   <ItemGroup>
     <Build Include="dbo\Table\Movie.sql" />
     <Build Include="dbo\Table\Role.sql" />
-    <Build Include="dbo\Table\Table1.sql" />
+    <Build Include="dbo\Table\Actor.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="IMDBDB.refactorlog" />

@@ -2,11 +2,11 @@
 
 namespace IMDB.Models
 {
-    public class MovieRole : Entity
+    public class Role : Entity
     {
         public override Type EntityType
         {
-            get { return typeof(MovieRole); }
+            get { return typeof(Role); }
         }
 
         public virtual string Name
