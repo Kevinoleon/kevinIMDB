@@ -1,4 +1,4 @@
-﻿namespace ContosoUniversity.NHibernate.ClassMappings
+﻿namespace IMDB.NHibernate.ClassMappings
 {
     using global::NHibernate.Mapping.ByCode;
     using global::NHibernate.Mapping.ByCode.Conformist;
@@ -16,7 +16,7 @@
                 e => e.Id,
                 m =>
                 {
-                    m.Column("Id-Actor");
+                    m.Column("Id_Actor");
                     m.Generator(Generators.Native);
                 });
 
@@ -54,10 +54,10 @@
                 {
                     // NOTE: inverse true should only be used to map a bidirectional relationship (the other overload should be used for that).
                     // See answer by Stefan Steinegger on https://stackoverflow.com/questions/1061179/when-to-use-inverse-false-on-nhibernate-hibernate-onetomany-relationships
-                    //cm.Inverse(true);
+                    cm.Inverse(true);
                     cm.Lazy(CollectionLazy.Lazy);
                     cm.Cascade(Cascade.All | Cascade.DeleteOrphans);
-                    cm.Key(k => k.Column(col => col.Name("Id-Actor"))); // the column on the other table that points back at this entity
+                    cm.Key(k => k.Column(col => col.Name("Id_Actor"))); // the column on the other table that points back at this entity
                 },
                 m => m.OneToMany());
             

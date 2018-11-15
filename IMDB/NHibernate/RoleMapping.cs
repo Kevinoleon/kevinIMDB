@@ -1,4 +1,4 @@
-﻿namespace ContosoUniversity.NHibernate.ClassMappings
+﻿namespace IMDB.NHibernate.ClassMappings
 {
     using global::NHibernate.Mapping.ByCode;
     using global::NHibernate.Mapping.ByCode.Conformist;
@@ -17,7 +17,7 @@
                 e => e.Id,
                 m =>
                 {
-                    m.Column("Id-Role");
+                    m.Column("Id_Role");
                     m.Generator(Generators.Native);
                 });
 
@@ -39,17 +39,18 @@
                 {
                     m.Update(true);
                     m.NotNullable(true);
-                    m.Column("Id-Movie");
+                    m.Column("Id_Movie");
                     m.Unique(false);
                     m.Cascade(Cascade.None);
                 });
+
             this.ManyToOne(
                 e => e.Actor,
                 m =>
                 {
                     m.Update(true);
                     m.NotNullable(true);
-                    m.Column("Id-Actor");
+                    m.Column("Id_Actor");
                     m.Unique(false);
                     m.Cascade(Cascade.None);
                 });

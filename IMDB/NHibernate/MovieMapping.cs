@@ -1,4 +1,4 @@
-﻿namespace ContosoUniversity.NHibernate.ClassMappings
+﻿namespace IMDB.NHibernate.ClassMappings
 {
     using global::NHibernate.Mapping.ByCode;
     using global::NHibernate.Mapping.ByCode.Conformist;
@@ -15,7 +15,7 @@
             this.Id(
                 e => e.Id,
                 m =>{
-                    m.Column("Id-Movie");
+                    m.Column("Id_Movie");
                     m.Generator(Generators.Native);
                 });
 
@@ -58,24 +58,9 @@
                     //cm.Inverse(true);
                     cm.Lazy(CollectionLazy.Lazy);
                     cm.Cascade(Cascade.All | Cascade.DeleteOrphans);
-                    cm.Key(k => k.Column(col => col.Name("Id-Movie"))); // the column on the other table that points back at this entity
+                    cm.Key(k => k.Column(col => col.Name("Id_Movie"))); // the column on the other table that points back at this entity
                 },
                 m => m.OneToMany());
-
-            /* esto solo lo dejo por si las dudas
-                this.Set(
-                e => e.MovieRoles,
-                m =>
-                {
-                    m.Schema("dbo");
-                    m.Table("Role");
-                    m.Lazy(CollectionLazy.Lazy);
-                    m.Cascade(Cascade.None);
-                    m.Key(k => k.Column("Id-Movie"));
-                },
-                r => r.ManyToMany(p => p.Column("Id-Actor")));
-
-            */
         }
 
     }
