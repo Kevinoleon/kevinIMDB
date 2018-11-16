@@ -62,6 +62,7 @@ namespace IMDB.Controllers
         public ActionResult Edit(int id)
         {
             var ActortoEdit = session.Get<Actor>(id);
+            ViewBag.Movies = session.Query<Movie>();
             return View(ActortoEdit);
         }
 
@@ -70,11 +71,35 @@ namespace IMDB.Controllers
         public ActionResult Edit(Actor actorToEdit)
         {
 
+            var titles = this.Request.Form.GetValues("MovieRoleTitle");
+            var movieIds = this.Request.Form.GetValues("MovieRoleMovie");
+
+            if (titles != null || movieIds!=null)
+            {
+                for (int index = 0; index < titles.Length; ++index)
+                {
+                    actorToEdit.ActorRoles.Add(new Role
+                    {
+                        Actor = actorToEdit,
+                        Name = titles[index],
+                        Movie = session.Get<Movie>(int.Parse(movieIds[index]))
+                    });
+                }
+            }
+            else
+            {
+                actorToEdit.ActorRoles.Clear();
+            }
+            
+
+
             session.Update(actorToEdit);
             session.Transaction.Commit();
 
+            ViewBag.Movies = session.Query<Movie>();
+
             return RedirectToAction("Index");
-            
+            //return RedirectToAction("Edit", new { id = actorToEdit.Id });
         }
 
         // GET: Actor/Delete/5____________________________________________________________

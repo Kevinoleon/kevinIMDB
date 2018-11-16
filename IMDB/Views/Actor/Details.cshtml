@@ -35,6 +35,14 @@
             @Html.DisplayFor(model => model.Nationality)
         </dd>
 
+        <dt>Roles</dt>
+        <dd>
+            @foreach (var role in Model.ActorRoles)
+            {
+                <div>@role.Name / <a href="@Url.Action("Details", "Movie", new { id = role.Movie.Id })">@role.Movie.OriginalTitle</a></div>
+            }
+        </dd>
+
     </dl>
 </div>
 <p>
