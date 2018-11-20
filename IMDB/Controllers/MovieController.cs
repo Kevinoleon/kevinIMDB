@@ -90,6 +90,7 @@ namespace IMDB.Controllers
         public ActionResult Edit(int id)
         {
             var MovieToEdit = this.session.Get<Movie>(id);
+            ViewBag.Actors = session.Query<Actor>();
             return View(MovieToEdit);
         }
 
@@ -97,12 +98,61 @@ namespace IMDB.Controllers
         [HttpPost]
         public ActionResult Edit(Movie movieToEdit)
         {
+            var Movie = session.Get<Movie>(movieToEdit.Id);
+            Movie.OriginalTitle = movieToEdit.OriginalTitle;
+            Movie.ReleaseDate = movieToEdit.ReleaseDate;
+            Movie.Country = movieToEdit.Country;
 
-            session.Update(movieToEdit);
-            this.session.Transaction.Commit();
+            var roleIds = this.Request.Form.GetValues("RoleId");
+            var names = this.Request.Form.GetValues("RoleName");
+            var actorIds = this.Request.Form.GetValues("RoleActor");
+
+            Movie.MovieRoles.Clear();
+
+            if (names != null || actorIds != null)
+            {
+                for (int index = 0; index < names.Length; ++index)
+                {
+                    var roleId = int.Parse(roleIds[index]);
+                    Role role;
+                    if (roleId == 0) //compruebo si es un nuevo role
+                    {
+                        //creo un nuevo role
+                        role = new Role
+                        {
+                            Movie = Movie,
+                            Name = names[index],
+                            Actor = session.Get<Actor>(int.Parse(actorIds[index]))
+                        };
+                    }
+                    else
+                    {
+                        //actualizo el role existente
+                        role = session.Get<Role>(roleId);
+                        role.Movie = Movie;
+                        role.Name = names[index];
+                        role.Actor = session.Get<Actor>(int.Parse(actorIds[index]));
+                    }
+                    Movie.MovieRoles.Add(role);
+                }
+
+                session.Update(Movie);
+                this.session.Transaction.Commit();
+
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                Movie.MovieRoles.Clear();
+            }
+
+            session.Update(Movie);
+            session.Transaction.Commit();
+
+            ViewBag.Actors = session.Query<Actor>();
 
             return RedirectToAction("Index");
-            
         }
 
         // GET: Movie/Delete/5______________________________________________________________________________________________
