@@ -16,7 +16,7 @@ namespace IMDB.Models
 
         public virtual string OriginalTitle { get; set; }
 
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public virtual DateTime ReleaseDate { get; set; }
 
         public virtual string Country { get; set; }

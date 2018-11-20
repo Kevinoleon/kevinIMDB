@@ -53,6 +53,11 @@
 
                 <div class="row form-group" data-movie-role-id="0" style="display: none">
                     <div class="col-md-12">
+                        <div class="row form-group" style="display: none">
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" value="0" name="MovieRoleId" disabled />
+                            </div>
+                        </div>
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <input class="form-control" type="text" value="" name="MovieRoleTitle" placeholder="Role title..." disabled />
@@ -62,9 +67,9 @@
                             <div class="col-md-12">
                                 <select class="form-control" id="MovieRoleActor" name="MovieRoleMovie" placeholder="Role movie..." disabled>
                                     @foreach (var movie in (IEnumerable<Movie>)ViewBag.Movies)
-                                        {
-                                            <option value="@movie.Id">@movie.OriginalTitle</option>
-                                        }
+                                    {
+                                        <option value="@movie.Id">@movie.OriginalTitle</option>
+                                    }
                                 </select>
                             </div>
                         </div>
@@ -80,6 +85,11 @@
                 {
                     <div class="row form-group" data-movie-role-id="@role.Id">
                         <div class="col-md-12">
+                            <div class="row form-group" style="display: none">
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" value="@role.Id" name="MovieRoleId" />
+                                </div>
+                            </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
                                     <input class="form-control" type="text" value="@role.Name" name="MovieRoleTitle" placeholder="Role title..." />
@@ -89,9 +99,9 @@
                                 <div class="col-md-12">
                                     <select class="form-control" id="MovieRoleMovie" name="MovieRoleMovie" placeholder="Role movie...">
                                         @foreach (var movie in (IEnumerable<Movie>)ViewBag.Movies)
-                                            {
-                                                <option value="@movie.Id" @(role.Movie.Equals(movie) ? "selected" : "" )>@movie.OriginalTitle</option>
-                                            }
+                                        {
+                                            <option value="@movie.Id" @(role.Movie.Equals(movie) ? "selected" : "" )>@movie.OriginalTitle</option>
+                                        }
                                     </select>
                                 </div>
                             </div>

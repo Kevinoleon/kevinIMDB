@@ -70,30 +70,58 @@ namespace IMDB.Controllers
         [HttpPost]
         public ActionResult Edit(Actor actorToEdit)
         {
+            var actor = session.Get<Actor>(actorToEdit.Id);
+            actor.Name = actorToEdit.Name;
+            actor.Nationality = actorToEdit.Nationality;
+            actor.DateOfBirth = actorToEdit.DateOfBirth;            
 
+            var roleIds = this.Request.Form.GetValues("MovieRoleId");
             var titles = this.Request.Form.GetValues("MovieRoleTitle");
             var movieIds = this.Request.Form.GetValues("MovieRoleMovie");
 
+            actor.ActorRoles.Clear();       //------no me gusta pero no sè como màs hacerlo
+
             if (titles != null || movieIds!=null)
-            {
+            {                
                 for (int index = 0; index < titles.Length; ++index)
-                {
-                    actorToEdit.ActorRoles.Add(new Role
+                {                    
+                    var roleId = int.Parse(roleIds[index]);
+
+                    Role role;
+                    if (roleId == 0)
                     {
-                        Actor = actorToEdit,
-                        Name = titles[index],
-                        Movie = session.Get<Movie>(int.Parse(movieIds[index]))
-                    });
+                        // crear nuevo rol
+                        role = new Role
+                        {                            
+                            Actor = actor,
+                            Name = titles[index],
+                            Movie = session.Get<Movie>(int.Parse(movieIds[index]))
+                        };
+                    }
+                    else {
+                        // actualizar el existente
+                        role = session.Get<Role>(roleId);
+                        if (role != null)
+                        {                            
+                            role.Actor = actor;
+                            role.Name = titles[index];
+                            role.Movie = session.Get<Movie>(int.Parse(movieIds[index]));
+                        }
+                        else
+                        {
+                            // error
+                        }
+                    }
+                    actor.ActorRoles.Add(role);
                 }
             }
+
             else
             {
-                actorToEdit.ActorRoles.Clear();
+                actor.ActorRoles.Clear();
             }
-            
 
-
-            session.Update(actorToEdit);
+            session.Update(actor);
             session.Transaction.Commit();
 
             ViewBag.Movies = session.Query<Movie>();

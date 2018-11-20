@@ -13,7 +13,7 @@ namespace IMDB.Models
             get { return typeof(Actor); }
         }
         public virtual string Name { get; set; }
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public virtual DateTime DateOfBirth { get; set; }
         public virtual int age { get
             {
