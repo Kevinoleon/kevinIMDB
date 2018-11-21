@@ -27,19 +27,6 @@ namespace IMDB.Models
             set { movieRoles = value; }
         }
 
-        //public static int ContadorDeObj { get; set; }
-
-        //public string Poster { get; set; }
-        //public IList<Actor> Actores { get; set; }
-
-        //public Movie(string Otitle, string rDate, string country)
-        //{
-        //    this.Id = System.Threading.Interlocked.Increment(ref Id);
-        //    this.OriginalTitle = Otitle;
-        //    this.ReleaseDate = rDate;
-        //    this.Country = country;
-        //}
-
     }
     
 }

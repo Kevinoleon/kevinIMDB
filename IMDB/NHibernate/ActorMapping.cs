@@ -60,20 +60,6 @@
                     cm.Key(k => k.Column(col => col.Name("Id_Actor"))); // the column on the other table that points back at this entity
                 },
                 m => m.OneToMany());
-            
-            /*esto solo lo dejo por si las dudas
-            this.Set(
-                e => e.ActorRoles,
-                m =>
-                {
-                    m.Schema("dbo");
-                    m.Table("Role");
-                    m.Lazy(CollectionLazy.Lazy);
-                    m.Cascade(Cascade.None);
-                    m.Key(k => k.Column("Id-Actor"));
-                },
-                r => r.ManyToMany(p => p.Column("Id-Movie")));
-            */
         }
 
     }

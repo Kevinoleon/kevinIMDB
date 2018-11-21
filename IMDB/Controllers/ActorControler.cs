@@ -10,7 +10,7 @@ namespace IMDB.Controllers
 {
     public class ActorController : Controller
     {
-        //private const int PageSize = 5;
+        
 
         private readonly ISession session;
         public ActorController()
@@ -79,7 +79,7 @@ namespace IMDB.Controllers
             var titles = this.Request.Form.GetValues("MovieRoleTitle");
             var movieIds = this.Request.Form.GetValues("MovieRoleMovie");
 
-            actor.ActorRoles.Clear();       //------no me gusta pero no sè como màs hacerlo
+            actor.ActorRoles.Clear();       //------
 
             if (titles != null || movieIds!=null)
             {                
@@ -127,7 +127,6 @@ namespace IMDB.Controllers
             ViewBag.Movies = session.Query<Movie>();
 
             return RedirectToAction("Index");
-            //return RedirectToAction("Edit", new { id = actorToEdit.Id });
         }
 
         // GET: Actor/Delete/5____________________________________________________________

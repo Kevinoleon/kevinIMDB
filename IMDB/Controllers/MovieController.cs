@@ -21,42 +21,13 @@ namespace IMDB.Controllers
         [ActionName("Index")]
         public ActionResult Index(string searchString)
         {
-            //string searchString = id;
-            //IList<Movie> movies= new List<Movie>();
-
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    //Where(m => m.OriginalTitle.ToLower().Contains(searchString.ToLower()))
-            //    movies = this.session.Query<Movie>()
-            //        .Where(m => m.OriginalTitle.ToLower().Contains(searchString.ToLower()))
-            //        .ToList();
-            //}
-            //else
-            //{
-            //    movies = this.session.Query<Movie>().ToList();
-            //}
-            //return View(movies);
-
-            //---------------ver optimizada----------------------------
+            
             var movies = String.IsNullOrEmpty(searchString)
            ? this.session.Query<Movie>().ToList() : this.session.Query<Movie>()
                    .Where(m => m.OriginalTitle.ToLower().Contains(searchString.ToLower()))
                    .ToList();
             return View(movies);
-            //---------------------------------------------------------
-
-
-            //---------------paginaciòn sergio-----------------    
-            //var pageInfo = new MoviePageInfo
-            //{
-            //    PageItems = MovieStorage.GetByName(query, pageIndex ?? 0, PageSize),
-            //    PageIndex = pageIndex ?? 0,
-            //    PageCount = MovieStorage.GetCount() / PageSize + 1,
-            //    SearchCriteria = query
-            //};
-
-            //return View("edit", pageInfo);
-            //-------------------------------------------------
+            
 
         }
 
