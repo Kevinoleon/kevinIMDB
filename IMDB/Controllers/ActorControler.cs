@@ -1,7 +1,10 @@
 ﻿using IMDB.Models;
+using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+
 
 namespace IMDB.Controllers
 {
@@ -9,64 +12,56 @@ namespace IMDB.Controllers
     {
         //private const int PageSize = 5;
 
-        // GET: Actor
-        public ActionResult Index(string searchString)
+        private readonly ISession session;
+        public ActorController()
         {
-            //string searchString = id;
-            ISet<Actor> actors = new HashSet<Actor>();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                actors = ActorStorage.GetByName(searchString);
-            }
-            else
-            {
-                actors = ActorStorage.GetAll();
-            }
-            return View(actors);
-        
-
-
-            //---------------version sergio-----------------    
-            //var pageInfo = new ActorPageInfo
-            //{
-            //    PageItems = ActorStorage.GetByName(query, pageIndex ?? 0, PageSize),
-            //    PageIndex = pageIndex ?? 0,
-            //    PageCount = ActorStorage.GetCount() / PageSize + 1,
-            //    SearchCriteria = query
-            //};
-
-            //return View("edit", pageInfo);
-            //-------------------------------------------------
-            
+            this.session = NHibernate.SessionFactory.Instance.OpenSession();
+            this.session.Transaction.Begin();
         }
 
-        // GET: Actor/Details/5
+        // GET: Actor_________________________________________________________________
+        [ActionName("Index")]
+        public ActionResult Index(string searchString)
+        {
+            
+            var Actors = String.IsNullOrEmpty(searchString)
+          ? this.session.Query<Actor>().ToList() : this.session.Query<Actor>()
+                  .Where(m => m.Name.ToLower().Contains(searchString.ToLower()))
+                  .ToList();
+            return View(Actors);
+           
+
+        }
+
+        // GET: Actor/Details/5___________________________________________________
         public ActionResult Details(int id)
         {
-            var Actor = ActorStorage.GetById(id);
+            var Actor = session.Get<Actor>(id);
             return View(Actor);
         }
 
-        // GET: Actor/Create
+        // GET: Actor/Create______________________________________________________
         public ActionResult Create()
         {
-            
-            return View();
+            var NewActor = new Actor();
+            return View(NewActor);
         }
 
         // POST: Actor/Create
         [HttpPost]
+        [ActionName("Create")]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Actor newActor)
         {
-            
-            ActorStorage.Save(newActor);            
+            session.Save(newActor);
+            session.Transaction.Commit();
             return RedirectToAction("Index");
         }
 
-        // GET: Actor/Edit/5
+        // GET: Actor/Edit/5_________________________________________________________
         public ActionResult Edit(int id)
         {
-            var ActortoEdit = ActorStorage.GetById(id);
+            var ActortoEdit = session.Get<Actor>(id);
             return View(ActortoEdit);
         }
 
@@ -75,25 +70,41 @@ namespace IMDB.Controllers
         public ActionResult Edit(Actor actorToEdit)
         {
 
-            ActorStorage.Save(actorToEdit);
+            session.Update(actorToEdit);
+            session.Transaction.Commit();
 
             return RedirectToAction("Index");
             
         }
 
-        // GET: Actor/Delete/5
+        // GET: Actor/Delete/5____________________________________________________________
         public ActionResult Delete(int id)
         {
-            var ActortoEdit = ActorStorage.GetById(id);
-            return View(ActortoEdit);
+            var ActortoDelete = session.Get<Actor>(id);
+            return View(ActortoDelete);
         }
 
         // POST: Actor/Delete/5
         [HttpPost]
-        public ActionResult Delete(Actor actorToDelete)
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
         {
-            ActorStorage.Delete(actorToDelete.Id);
+
+            var ActorToDelete = session.Get<Actor>(id);
+            session.Delete(ActorToDelete);
+            session.Transaction.Commit();
+
             return RedirectToAction("Index");
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.session.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
