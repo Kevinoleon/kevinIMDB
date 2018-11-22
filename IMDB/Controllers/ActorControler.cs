@@ -10,9 +10,8 @@ namespace IMDB.Controllers
 {
     public class ActorController : Controller
     {
-        //private const int PageSize = 5;
-
         private readonly ISession session;
+
         public ActorController()
         {
             this.session = NHibernate.SessionFactory.Instance.OpenSession();
@@ -23,13 +22,14 @@ namespace IMDB.Controllers
         [ActionName("Index")]
         public ActionResult Index(string searchString)
         {
-            
-            var Actors = String.IsNullOrEmpty(searchString)
-          ? this.session.Query<Actor>().ToList() : this.session.Query<Actor>()
-                  .Where(m => m.Name.ToLower().Contains(searchString.ToLower()))
-                  .ToList();
-            return View(Actors);
-           
+
+            var actor = String.IsNullOrEmpty(searchString)
+                ? this.session.Query<Actor>().ToList()
+                : this.session.Query<Actor>()
+                    .Where(m => m.Name.ToLower().Contains(searchString.ToLower()))
+                    .ToList();
+            return View(actor);
+
 
         }
 
@@ -54,6 +54,9 @@ namespace IMDB.Controllers
         public ActionResult Create(Actor newActor)
         {
             session.Save(newActor);
+
+            // TODO: agregar logica de mapeo de roles
+
             session.Transaction.Commit();
             return RedirectToAction("Index");
         }
@@ -62,19 +65,69 @@ namespace IMDB.Controllers
         public ActionResult Edit(int id)
         {
             var ActortoEdit = session.Get<Actor>(id);
+            ViewBag.Movies = session.Query<Movie>();
             return View(ActortoEdit);
         }
 
         // POST: Actor/Edit/5
         [HttpPost]
-        public ActionResult Edit(Actor actorToEdit)
+        public ActionResult Edit(Actor requestActor)
         {
+            var roleIds = this.Request.Form.GetValues("MovieRoleId");
+            var titles = this.Request.Form.GetValues("MovieRoleTitle");
+            var movieIds = this.Request.Form.GetValues("MovieRoleMovie");
 
-            session.Update(actorToEdit);
+            if (titles != null && movieIds != null)
+            {
+                for (int index = 0; index < Math.Min(titles.Length, movieIds.Length); ++index)
+                {
+                    requestActor.ActorRoles.Add(new Role
+                    {
+                        Id = int.Parse(roleIds[index]),
+                        Actor = requestActor,
+                        Name = titles[index],
+                        Movie = new Movie { Id = int.Parse(movieIds[index]) },
+                    });
+                }
+            }
+
+            // requestActor tiene todos los datos que llegaron del request
+
+            var sessionActor = session.Get<Actor>(requestActor.Id);
+            sessionActor.Name = requestActor.Name;
+            sessionActor.Nationality = requestActor.Nationality;
+            sessionActor.DateOfBirth = requestActor.DateOfBirth;
+
+            /*sessionActor.ActorRoles.Clear();
+            foreach (var requestRole in requestActor.ActorRoles) {
+                var sessionRole = requestRole.Id == 0 ? new Role() : session.Get<Role>(requestRole.Id);
+                sessionRole.Name = requestRole.Name;
+                sessionRole.Actor = sessionActor;
+                sessionRole.Movie = session.Get<Movie>(requestRole.Movie.Id);
+                sessionActor.ActorRoles.Add(sessionRole);
+            }*/
+
+            // add or update associated roles
+            foreach (var requestRole in requestActor.ActorRoles)
+            {
+                //var sessionRole = requestRole.Id == 0 ? new Role() : session.Get<Role>(requestRole.Id);
+                var sessionRole = requestRole.Id == 0 ? new Role() : sessionActor.ActorRoles.FirstOrDefault(r => r.Id == requestRole.Id);
+                sessionRole.Name = requestRole.Name;
+                sessionRole.Actor = sessionActor;
+                sessionRole.Movie = session.Get<Movie>(requestRole.Movie.Id);
+                sessionActor.ActorRoles.Add(sessionRole);
+            }
+
+            // remove no longer associated roles
+            var requestRoleIds = new HashSet<int>(requestActor.ActorRoles.Select(r => r.Id));
+            foreach (var removedRole in sessionActor.ActorRoles.Where(r => !requestRoleIds.Contains(r.Id)).ToArray()) {
+                sessionActor.ActorRoles.Remove(removedRole);
+            }
+
             session.Transaction.Commit();
+            ViewBag.Movies = session.Query<Movie>();
 
             return RedirectToAction("Index");
-            
         }
 
         // GET: Actor/Delete/5____________________________________________________________

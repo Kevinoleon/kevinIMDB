@@ -12,15 +12,18 @@ namespace IMDB.Models
         {
             get { return typeof(Actor); }
         }
+        [Required]
         public virtual string Name { get; set; }
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
+        [Required]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public virtual DateTime DateOfBirth { get; set; }
         public virtual int age { get
             {
                 TimeSpan i = DateTime.Today - DateOfBirth;
                 return i.Days / 365;            
-        }
+            }
          }
+        [Required]
         public virtual string  Nationality { get; set; }
 
         [Display(Name = "Roles")]

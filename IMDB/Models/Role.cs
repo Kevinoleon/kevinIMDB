@@ -1,14 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace IMDB.Models
 {
+
     public class Role : Entity
     {
         public override Type EntityType
         {
             get { return typeof(Role); }
         }
-
+        [Required]
         public virtual string Name
         {
             get;

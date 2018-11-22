@@ -55,7 +55,7 @@
                 {
                     // NOTE: inverse true should only be used to map a bidirectional relationship (the other overload should be used for that).
                     // See answer by Stefan Steinegger on https://stackoverflow.com/questions/1061179/when-to-use-inverse-false-on-nhibernate-hibernate-onetomany-relationships
-                    //cm.Inverse(true);
+                    cm.Inverse(true);
                     cm.Lazy(CollectionLazy.Lazy);
                     cm.Cascade(Cascade.All | Cascade.DeleteOrphans);
                     cm.Key(k => k.Column(col => col.Name("Id_Movie"))); // the column on the other table that points back at this entity
