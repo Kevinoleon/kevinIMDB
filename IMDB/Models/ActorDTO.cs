@@ -11,6 +11,7 @@ namespace IMDB.Models
         public String Name { get; set; }
         public String Nationality { get; set; }
         public DateTime DateOfBirth { get; set; }
+        //public int age { get; set; }
         public List<String> Roles { get; set; }
     }
 }
