@@ -9,12 +9,15 @@ namespace IMDB.Mappers
 {
     public class RoleDtoMapper
     {
-        public static void MapToDTOModel(Role source, RoleDTO destination)
+        public static RoleDTO MapToDTOModel(Role source, RoleDTO destination)
         {
             destination.Id = source.Id;
             destination.NameDto = source.Name;
             destination.MovieId = source.Movie.Id;
             destination.ActorId = source.Actor.Id;
+
+            return destination;
+
         }
 
         public static Role MapFromDTOModel(RoleDTO source, Role destination, ISession session)

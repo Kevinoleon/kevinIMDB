@@ -16,13 +16,15 @@ namespace IMDB.Mappers
             destination.Name = source.Name;
             destination.DateOfBirth = source.DateOfBirth;
             destination.Nationality = source.Nationality;
+                        
+            destination.Roles = source.ActorRoles.Select(r => RoleDtoMapper.MapToDTOModel(r, new RoleDTO())).ToList();
 
-            destination.Roles = source.ActorRoles.Select(r => new RoleDTO
-            {
-                MovieId = r.Movie.Id,
-                ActorId = r.Actor.Id,
-                NameDto = r.Name
-            }).ToList();
+            //destination.Roles = source.ActorRoles.Select(r => new RoleDTO
+            //{
+            //    MovieId = r.Movie.Id,
+            //    ActorId = r.Actor.Id,
+            //    NameDto = r.Name
+            //}).ToList();
         }
 
         public static void MapFromDTOModel(ActorDTO source, Actor destination, ISession session)

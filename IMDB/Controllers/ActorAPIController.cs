@@ -26,7 +26,7 @@ namespace IMDB.Controllers
         }
 
         // GET: api/ActorAPI/
-        public IHttpActionResult Get()
+        public IHttpActionResult GetActors()
         {
             var actorDtos = from a in session.Query<Actor>()
                          select new ActorDisplayDTO()
@@ -79,16 +79,18 @@ namespace IMDB.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutActor(ActorDTO actcorDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return Ok("Couldn't edit");
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Ok("Couldn't edit");
+            //}
 
             Actor sessionActor = session.Get<Actor>(actcorDto.Id);
             if (sessionActor == null)
             {
                 return Ok("Actor Doesn't exist");
             }
+
+            //sessionActor.ActorRoles.Clear()
 
             ActorDtoMapper.MapFromDTOModel(actcorDto, sessionActor, session);
 
@@ -104,20 +106,20 @@ namespace IMDB.Controllers
         }
 
         // DELETE: api/Books/5
-        [ResponseType(typeof(Actor))]
-        public async Task<IHttpActionResult> DeleteActor(int id)
+        [ResponseType(typeof(void))]
+        public IHttpActionResult DeleteActor(int id)
         {
             Actor actorToDelete = session.Get<Actor>(id);
             if (actorToDelete == null)
             {
-                return NotFound();
+                return Ok("Actor doesn't exist");
             }
 
             var ActorToDelete = session.Get<Actor>(id);
             session.Delete(ActorToDelete);
             session.Transaction.Commit();
 
-            return Ok("se eliminò el Actor");
+            return Ok("Actor deleted");
         }
     }
 }
