@@ -64,7 +64,7 @@ namespace IMDB.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Ok("no se pudo crear");
+                return Ok("Couldn't create");
             }
             Actor actor = new Actor();
             ActorDtoMapper.MapFromDTOModel(actorDto, actor, session);
@@ -72,12 +72,35 @@ namespace IMDB.Controllers
             
             session.Transaction.Commit();
 
-            return Ok("se creó el Actor");
+            return Ok("Actor created");
         }
 
         // PUT: api/ActorDTO/5
-        public void Put(int id, [FromBody]string value)
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutActor(ActorDTO actcorDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return Ok("Couldn't edit");
+            }
+
+            Actor sessionActor = session.Get<Actor>(actcorDto.Id);
+            if (sessionActor == null)
+            {
+                return Ok("Actor Doesn't exist");
+            }
+
+            ActorDtoMapper.MapFromDTOModel(actcorDto, sessionActor, session);
+
+            session.Transaction.Commit();
+            
+
+            return Ok("Actor edited");         
+
+
+
+            
+
         }
 
         // DELETE: api/Books/5
