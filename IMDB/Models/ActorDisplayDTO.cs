@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
 
 namespace IMDB.Models
 {
-    public class ActorDTO
+    public class ActorDisplayDTO
     {
         public int Id { get; set; }
         public String Name { get; set; }
         public String Nationality { get; set; }
         public DateTime DateOfBirth { get; set; }
         //public int age { get; set; }
-        public IList<RoleDTO> Roles { get; set; }
+        public List<String> Roles { get; set; }
     }
 }
