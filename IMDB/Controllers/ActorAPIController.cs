@@ -82,14 +82,15 @@ namespace IMDB.Controllers
 
         // PUT: api/ActorDTO/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutActor(ActorDTO actcorDto)
+        public IHttpActionResult PutActor(ActorDTO actorDto, int id)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Ok("Couldn't edit");
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Couldn't edit");
+            }
 
-            Actor sessionActor = session.Get<Actor>(actcorDto.Id);
+            Actor sessionActor = session.Get<Actor>(id);
+
             if (sessionActor == null)
             {
                 return Ok("Actor Doesn't exist");
@@ -97,7 +98,7 @@ namespace IMDB.Controllers
 
             //sessionActor.ActorRoles.Clear()
 
-            ActorDtoMapper.MapFromDTOModel(actcorDto, sessionActor, session);
+            ActorDtoMapper.MapFromDTOModel(actorDto, sessionActor, session);
 
             session.Transaction.Commit();
             
