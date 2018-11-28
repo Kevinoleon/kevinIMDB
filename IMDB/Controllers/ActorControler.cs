@@ -94,6 +94,7 @@ namespace IMDB.Controllers
             // requestActor tiene todos los datos que llegaron del request
 
             var sessionActor = session.Get<Actor>(requestActor.Id);
+
             sessionActor.Name = requestActor.Name;
             sessionActor.Nationality = requestActor.Nationality;
             sessionActor.DateOfBirth = requestActor.DateOfBirth;
