@@ -26,6 +26,7 @@ namespace IMDB.Mappers
             destination.Name = source.NameDto;
             destination.Movie = session.Get<Movie>(source.MovieId);
             destination.Actor = session.Get<Actor>(source.ActorId);
+            
 
             return destination;
         }

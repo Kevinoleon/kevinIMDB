@@ -64,12 +64,17 @@ namespace IMDB.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Ok("Couldn't create");
+                return BadRequest("Couldn't create");
             }
+
+            if (session.Get<Actor>(actorDto.Id) != null)
+            {
+                return BadRequest("Actor already exists");
+            }
+
             Actor actor = new Actor();
             ActorDtoMapper.MapFromDTOModel(actorDto, actor, session);
 
-            
             session.Transaction.Commit();
 
             return Ok("Actor created");

@@ -35,13 +35,16 @@ namespace IMDB.Mappers
             destination.Nationality = source.Nationality;
 
             session.Save(destination);
+
+            
+            
             
 
             foreach(var role in source.Roles)
             {
+                role.ActorId = destination.Id;
                 destination.ActorRoles.Add(RoleDtoMapper.MapFromDTOModel(role, new Role(), session));
             }
-
             
         }
 
