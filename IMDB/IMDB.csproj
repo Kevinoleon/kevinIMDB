@@ -224,6 +224,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MovieAPIController.cs" />
     <Compile Include="Controllers\ActorAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -232,16 +233,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappers\MovieDtoMapper.cs" />
     <Compile Include="Mappers\ActorDtoMapper.cs" />
     <Compile Include="Mappers\RoleDtoMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Actor.cs" />
+    <Compile Include="Models\MovieDTO.cs" />
+    <Compile Include="Models\Movie DisplayDTO .cs" />
     <Compile Include="Models\ActorDTO.cs" />
     <Compile Include="Models\ActorDisplayDTO.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MovieDTO.cs" />
     <Compile Include="Models\MoviePageInfo.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="ActorStorage.cs" />

@@ -28,17 +28,26 @@ namespace IMDB.Controllers
         // GET: api/ActorAPI/
         public IHttpActionResult GetActors()
         {
-            var actorDtos = from a in session.Query<Actor>()
-                         select new ActorDisplayDTO()
-                         {
-                             Id = a.Id,
-                             Name=a.Name,
-                             Nationality = a.Nationality,
-                             DateOfBirth=a.DateOfBirth,                         
-                             Roles= a.ActorRoles.Select(r=>r.Name+" en "+r.Movie.OriginalTitle).ToList()
-                         };
+            var actors = session.Query<Actor>();
+            if (actors != null)
+            {
+                var actorDtos = from a in actors
+                                select new ActorDisplayDTO()
+                                {
+                                    Id = a.Id,
+                                    Name = a.Name,
+                                    Nationality = a.Nationality,
+                                    DateOfBirth = a.DateOfBirth,
+                                    Roles = a.ActorRoles.Select(r => r.Name + " en " + r.Movie.OriginalTitle).ToList()
+                                };
 
-            return Ok(actorDtos);
+                return Ok(actorDtos);                
+            }
+            else
+            {
+                return NotFound();
+            }
+            
         }
         // GET: api/ActorAPI/12
         [ResponseType(typeof(ActorDTO))]
@@ -47,7 +56,7 @@ namespace IMDB.Controllers
             Actor sessionActor = session.Get<Actor>(id);
             if (sessionActor == null)
             {
-                return Ok("Actor Doesn't exist");
+                return BadRequest("Actor Doesn't exist");
             }
             var actorDto = new ActorDTO();
 
@@ -93,7 +102,7 @@ namespace IMDB.Controllers
 
             if (sessionActor == null)
             {
-                return Ok("Actor Doesn't exist");
+                return BadRequest("Actor Doesn't exist");
             }
 
             //sessionActor.ActorRoles.Clear()
@@ -118,7 +127,7 @@ namespace IMDB.Controllers
             Actor actorToDelete = session.Get<Actor>(id);
             if (actorToDelete == null)
             {
-                return Ok("Actor doesn't exist");
+                return BadRequest("Actor doesn't exist");
             }
 
             var ActorToDelete = session.Get<Actor>(id);
