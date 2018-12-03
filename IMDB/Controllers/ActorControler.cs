@@ -18,6 +18,13 @@ namespace IMDB.Controllers
             this.session.Transaction.Begin();
         }
 
+        
+        [ActionName("IndexJs")]
+        public ActionResult IndexJs()
+        {
+            return View();
+        }
+
         // GET: Actor_________________________________________________________________
         [ActionName("Index")]
         public ActionResult Index(string searchString)

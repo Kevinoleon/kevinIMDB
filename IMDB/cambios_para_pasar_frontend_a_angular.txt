@@ -1,0 +1,4 @@
+﻿1. creè indexJs.cshtml
+2. en RouteConfig cambiè el default a indexJs
+3. creo LayoutJs.cshtml
+4. configuro el layout de Views/viewStart a layoutJs
