@@ -114,7 +114,7 @@ namespace IMDB.Controllers
 
         }
 
-        // DELETE: api/Books/5
+        // DELETE: /api/ActorAPI/28
         [ResponseType(typeof(void))]
         public IHttpActionResult DeleteActor(int id)
         {

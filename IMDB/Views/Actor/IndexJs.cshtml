@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "IndexJs";
+    ViewBag.Title = "Actores";
 }
 <style>
     .btn-space {
@@ -41,8 +41,8 @@
                     
                 </td>
                 <td>
-                    <input type="button" class="btn btn-warning" value="Edit" ng-click="UpdateEmp(actor)" />
-                    <input type="button" class="btn btn-danger" value="Delete" ng-click="DeleteEmp(actor)" />
+                    <input type="button" class="btn btn-info" value="Edit" ng-click="edit(actor)" />
+                    <input type="button" class="btn btn-danger" value="Delete" ng-click="Delete(actor.Id)" />
                 </td>
             </tr>
         </table>

@@ -8,8 +8,8 @@
 //console.log("a ver cual es la joda catrejijeptas");
 
 var app = angular.module("myApp", []);
-app.controller("myCtrl", function ($scope, $http) {
-    debugger;
+app.controller("myCtrl", function ($scope, $http) {    
+
     $scope.InsertData = function () {
         var Action = document.getElementById("btnSave").getAttribute("value");
         if (Action == "Submit") {
@@ -62,24 +62,24 @@ app.controller("myCtrl", function ($scope, $http) {
             alert("Error Occur");
         })
     };
-    $scope.DeleteEmp = function (Emp) {
+    $scope.Delete = function (id) {
         $http({
-            method: "post",
-            url: "http://localhost:39209/Employee/Delete_Employee",
-            datatype: "json",
-            data: JSON.stringify(Emp)
+            method: "delete",
+            url: "http://localhost:7130/api/ActorAPI/"+id,
+            //datatype: "json",
+            //data: JSON.stringify(Emp)
         }).then(function (response) {
             alert(response.data);
             $scope.GetAllData();
         })
     };
-    $scope.UpdateEmp = function (Emp) {
+    $scope.edit = function (actor) {
         document.getElementById("EmpID_").value = Emp.Emp_Id;
         $scope.EmpName = Emp.Emp_Name;
         $scope.EmpCity = Emp.Emp_City;
         $scope.EmpAge = Emp.Emp_Age;
         document.getElementById("btnSave").setAttribute("value", "Update");
-        document.getElementById("btnSave").style.backgroundColor = "Yellow";
-        document.getElementById("spn").innerHTML = "Update Employee Information";
+        document.getElementById("btnSave").style.backgroundColor = "green";
+        document.getElementById("spn").innerHTML = "Edit actor";
     }
 })  
