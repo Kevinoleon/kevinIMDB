@@ -37,22 +37,27 @@ namespace IMDB.Mappers
             session.Save(destination);
 
 
-
-
-            // add or update associated roles
-            foreach (var role in source.Roles)
+            if (source.Roles!=null)
             {
-                role.ActorId = destination.Id;
+                // add or update associated roles
+                foreach (var role in source.Roles)
+                {
 
-                if(role.Id==0  || session.Get<Role>(role.Id)==null)
-                {
-                    role.Id = 0;
-                    destination.ActorRoles.Add(RoleDtoMapper.MapFromDTOModel(role, new Role(), session));
+                    role.ActorId = destination.Id;
+
+                    if (role.Id == 0 || session.Get<Role>(role.Id) == null)
+                    {
+                        role.Id = 0;
+                        destination.ActorRoles.Add(RoleDtoMapper.MapFromDTOModel(role, new Role(), session));
+                    }
+                    else
+                    {
+                        RoleDtoMapper.MapFromDTOModel(role, session.Get<Role>(role.Id), session);
+                    }
+
                 }
-                else
-                {
-                    RoleDtoMapper.MapFromDTOModel(role, session.Get<Role>(role.Id), session);
-                }
+
+            
             }
             
         }
