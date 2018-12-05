@@ -9,7 +9,7 @@
 
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function ($scope, $http) {    
-
+    $scope.formTitle = 'Add new Actor';
     $scope.PostActor = function () {
         var Action = document.getElementById("btnSave").getAttribute("value");
         if (Action == "Submit") {
@@ -32,26 +32,29 @@ app.controller("myCtrl", function ($scope, $http) {
                 $scope.Roles = "";
             })
         } else {
-            $scope.Employe = {};
-            $scope.Employe.Emp_Name = $scope.EmpName;
-            $scope.Employe.Emp_City = $scope.EmpCity;
-            $scope.Employe.Emp_Age = $scope.EmpAge;
-            $scope.Employe.Emp_Id = document.getElementById("EmpID_").value;
+            $scope.Actor = {};
+            $scope.Actor.Id = $scope.Id;
+            $scope.Actor.Name = $scope.Name;
+            $scope.Actor.Nationality = $scope.Nationality;
+            $scope.Actor.DateOfBirth = $scope.DateOfBirth;
+            $scope.Actor.Roles = $scope.Roles;
             $http({
-                method: "post",
-                url: "http://localhost:39209/Employee/Update_Employee",
+                method: "put",
+                url: "http://localhost:7130/api/ActorAPI/" + $scope.Actor.Id,
                 datatype: "json",
-                data: JSON.stringify($scope.Employe)
+                data: JSON.stringify($scope.Actor)
             }).then(function (response) {
                 alert(response.data);
                 $scope.GetAllData();
-                $scope.EmpName = "";
-                $scope.EmpCity = "";
-                $scope.EmpAge = "";
+                $scope.Name = "";
+                $scope.Nationality = "";
+                $scope.DateOfBirth = "";
+                $scope.Roles = "";
                 document.getElementById("btnSave").setAttribute("value", "Submit");
                 document.getElementById("btnSave").style.backgroundColor = "cornflowerblue";
-                document.getElementById("spn").innerHTML = "Add New Employee";
+                document.getElementById("spn").innerHTML = "Add New Actor";
             })
+            
         }
     }
     $scope.GetAllData = function () {
@@ -92,13 +95,22 @@ app.controller("myCtrl", function ($scope, $http) {
             $scope.GetAllData();
         })
     };
-    //$scope.edit = function (id) {
-    //    document.getElementById("EmpID_").value = Emp.Emp_Id;
-    //    $scope.EmpName = Emp.Emp_Name;
-    //    $scope.EmpCity = Emp.Emp_City;
-    //    $scope.EmpAge = Emp.Emp_Age;
-    //    document.getElementById("btnSave").setAttribute("value", "Update");
-    //    document.getElementById("btnSave").style.backgroundColor = "green";
-    //    document.getElementById("spn").innerHTML = "Edit actor";
-    //}
+    $scope.edit = function (id) {
+        $http({
+            method: "get",
+            url: "http://localhost:7130/api/ActorAPI/" + id,
+            datatype: "json",
+            //data: JSON.stringify(response)
+        }).then(function (response) {
+            $scope.Id = response.data.Id;
+            $scope.Name = response.data.Name;
+            $scope.Nationality = response.data.Nationality;
+            $scope.DateOfBirth = new Date(response.data.DateOfBirth);
+            $scope.Roles = "";
+            })
+
+        document.getElementById("btnSave").setAttribute("value", "Edit");
+        document.getElementById("btnSave").style.backgroundColor = "green";
+        $scope.formTitle = 'Edit Actor';
+    }
 })  
