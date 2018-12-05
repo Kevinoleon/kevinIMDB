@@ -58,6 +58,8 @@ app.controller("myCtrl", function ($scope, $http) {
         }
     }
     $scope.GetAllData = function () {
+        $scope.hideRoles = "true";
+        $scope.showRoles = "false";
         $http({
             method: "get",
             url: "http://localhost:7130/api/ActorAPI/"
@@ -65,7 +67,7 @@ app.controller("myCtrl", function ($scope, $http) {
             $scope.actors = response.data;
         }, function () {
             alert("Error Occur");
-        })
+            })
     };
     $scope.Detail = function (id) {
         $http({
@@ -113,4 +115,16 @@ app.controller("myCtrl", function ($scope, $http) {
         document.getElementById("btnSave").style.backgroundColor = "green";
         $scope.formTitle = 'Edit Actor';
     }
+    $scope.popRoles = function () {
+        $scope.hideRoles = "false";
+        $scope.showRoles = "true";
+        $http({
+            method: "get",
+            url: "http://localhost:7130/api/MovieAPI/"
+        }).then(function (response) {
+            $scope.movies = response.data;
+        }, function () {
+            alert("Error Occur");
+        })
+    };
 })  
