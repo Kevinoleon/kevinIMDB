@@ -9,40 +9,41 @@
 
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function ($scope, $http) {    
+    $scope.getMovDone = false;
+    $scope.isVisible = false;
     $scope.formTitle = 'Add new Actor';
     $scope.PostActor = function () {
         var Action = document.getElementById("btnSave").getAttribute("value");
         if (Action == "Submit") {
-            $scope.Actor = {};
-            $scope.Actor.Name = $scope.Name;
-            $scope.Actor.Nationality = $scope.Nationality;
-            $scope.Actor.DateOfBirth = $scope.DateOfBirth;
-            $scope.Actor.Roles = $scope.Roles;
+            let Actor = {};
+            Actor.Name = $scope.Name;
+            Actor.Nationality = $scope.Nationality;
+            Actor.DateOfBirth = $scope.DateOfBirth;
+            Actor.Roles = [{ nameDto: $scope.nameDto, MovieId: "16" }];            
             $http({
                 method: "post",
                 url: "http://localhost:7130/api/ActorAPI/",
                 datatype: "json",
-                data: JSON.stringify($scope.Actor)
+                data: JSON.stringify(Actor)
             }).then(function (response) {
-                alert("Actor Created");
+                alert(response.data);
                 $scope.GetAllData();
                 $scope.Name = "";
                 $scope.Nationality = "";
                 $scope.DateOfBirth = "";
-                $scope.Roles = "";
             })
         } else {
-            $scope.Actor = {};
-            $scope.Actor.Id = $scope.Id;
-            $scope.Actor.Name = $scope.Name;
-            $scope.Actor.Nationality = $scope.Nationality;
-            $scope.Actor.DateOfBirth = $scope.DateOfBirth;
-            $scope.Actor.Roles = $scope.Roles;
+            let Actor = {};
+            Actor.Id = $scope.Id;
+            Actor.Name = $scope.Name;
+            Actor.Nationality = $scope.Nationality;
+            Actor.DateOfBirth = $scope.DateOfBirth;
+            Actor.Roles = [{ nameDto: $scope.nameDto, MovieId: "16" }]
             $http({
                 method: "put",
-                url: "http://localhost:7130/api/ActorAPI/" + $scope.Actor.Id,
+                url: "http://localhost:7130/api/ActorAPI/" + Actor.Id,
                 datatype: "json",
-                data: JSON.stringify($scope.Actor)
+                data: JSON.stringify(Actor)
             }).then(function (response) {
                 alert(response.data);
                 $scope.GetAllData();
@@ -58,8 +59,7 @@ app.controller("myCtrl", function ($scope, $http) {
         }
     }
     $scope.GetAllData = function () {
-        $scope.hideRoles = "true";
-        $scope.showRoles = "false";
+        
         $http({
             method: "get",
             url: "http://localhost:7130/api/ActorAPI/"
@@ -108,7 +108,7 @@ app.controller("myCtrl", function ($scope, $http) {
             $scope.Name = response.data.Name;
             $scope.Nationality = response.data.Nationality;
             $scope.DateOfBirth = new Date(response.data.DateOfBirth);
-            $scope.Roles = "";
+            
             })
 
         document.getElementById("btnSave").setAttribute("value", "Edit");
@@ -116,15 +116,24 @@ app.controller("myCtrl", function ($scope, $http) {
         $scope.formTitle = 'Edit Actor';
     }
     $scope.popRoles = function () {
-        $scope.hideRoles = "false";
-        $scope.showRoles = "true";
-        $http({
-            method: "get",
-            url: "http://localhost:7130/api/MovieAPI/"
-        }).then(function (response) {
-            $scope.movies = response.data;
-        }, function () {
-            alert("Error Occur");
-        })
+        if ($scope.isVisible != true ) {
+            $scope.isVisible = $scope.isVisible = true;
+            if ($scope.getMovDone===false) {
+                $http({
+                    method: "get",
+                    url: "http://localhost:7130/api/MovieAPI/"
+                }).then(function (response) {
+                    $scope.movies = response.data;
+                    $scope.getMovDone = true;
+                }, function () {
+                    alert("Error Occur");
+                })
+                
+            }
+            
+            return;
+        }
+        $scope.isVisible = $scope.isVisible = false;
+        
     };
 })  

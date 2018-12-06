@@ -1,14 +1,4 @@
 ﻿
-@{
-    ViewBag.Title = "Actores";
-}
-<style>
-    .btn-space {
-        margin-left: -5%;
-        background-color: cornflowerblue;
-        font-size: large;
-    }
-</style>
 <div ng-app="myApp">
     <div ng-controller="myCtrl" ng-init="GetAllData()" class="divList">
         <h1 class="display-2"></h1>
@@ -91,22 +81,21 @@
                     <div class="col-sm-6 col-lg-4">
                         <div class="form-group">
                             <div class="col-md-8">
-                                <input type="hidden" class="form-control" id="inputRoles" ng-model="Roles">
 
                                 <input type="button" class="btn btn-light btn-block" value="Roles" ng-click="popRoles()" />
-                                <div ng-hide="hideRoles" ng-show="showRoles">
-                                    <input class="form-control" type="text" value="" name="MovieRoleTitle" placeholder="Role Name..."  />
-                                    <select class="form-control" id="MovieRoleMovie" name="MovieRoleMovie" placeholder="Role movie..." >
-                                        <option ng-repeat="movie in movies">{{movie.OriginalTitle}}</option>
+                                <div ng-show="isVisible">
+                                    <input class="form-control" type="text" value=""  placeholder="Role Name..." ng-model="nameDto"/>
+                                    <select class="form-control"  placeholder="Role movie..." >
+                                        <option ng-repeat="movie in movies">{{movie.OriginalTitle}} - {{movie.Id}}</option>
                                     </select>
+                                    <input type="hidden" class="form-control"  ng-model="Id" >
                                 </div>  
 
                             </div>
                         </div>
                     </div>          
 
-                </div>
-                    <input type="text" class="form-control" id="inputId" ng-model="Id" style="display:none">
+                </div>                    
                     <div class="row">
                         <div class="col-md-12">
                             <input type="button" id="btnSave" class="btn btn-primary btn-block" value="Submit" ng-click="PostActor()" />
