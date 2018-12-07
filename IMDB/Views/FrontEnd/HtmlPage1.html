@@ -1,0 +1,103 @@
+﻿
+<div ng-app="myApp">
+    <div ng-controller="myCtrl as $ctrl">
+
+        <lista-actores actors="$ctrl.actores "></lista-actores>
+        <!--
+    <div class="form-horizontal" role="form">
+        <div class="container">
+            <div class="row">
+                <h2>
+                    <span id="spn">{{ formTitle }}</span>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Name:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="inputName" placeholder="" ng-model="Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Nacionality:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="inputNacionality" placeholder="" ng-model="Nationality">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Birth Date:</label>
+                        <div class="col-md-8">
+                            <input type="date" class="form-control" id="inputBirthDate" ng-model="DateOfBirth">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="form-group">
+                        <div class="col-md-8">
+
+                            <input type="button" class="btn btn-light btn-block" value="Roles" ng-click="popRoles()" />
+                            <div ng-show="isVisible">
+                                <input class="form-control" type="text" value="" placeholder="Role Name..." ng-model="nameDto" />
+                                <select class="form-control" placeholder="Role movie..." ng-model="movieIdSelected">
+                                    <option ng-repeat="movie in movies" value="{{movie.Id}}">{{movie.OriginalTitle}} - {{movie.Id}}</option>
+                                </select>
+                                <input type="hidden" class="form-control" ng-model="Id">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="button" id="btnSave" class="btn btn-primary btn-block" value="Submit" ng-click="PostActor()" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 id="modal-title" class="modal-title">Actor detailed</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="lead" id="modal"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+       
+    </div>
+
+</div>
+
+
+
+
+
+
+@{
+    ViewBag.Title = "Actores";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/app/ActorApp.js"></script>
+<script src="~/Scripts/app/ListaActores.js"></script>
+

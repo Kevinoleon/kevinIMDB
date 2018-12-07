@@ -1,0 +1,43 @@
+﻿<table cellpadding="12" class="table table-bordered table-hover">
+    <tr>
+        <td>
+            <b>Id</b>
+        </td>
+        <td>
+            <b>Name</b>
+        </td>
+        <td>
+            <b>Nationality</b>
+        </td>
+        <td>
+            <b>Roles</b>
+        </td>
+        <td>
+            <b>Actions</b>
+        </td>
+    </tr>
+    <tr ng-repeat="actor in actores">
+        <td id="actorId">
+            {{actor.Id}}
+        </td>
+        <td>
+            {{actor.Name}}
+        </td>
+        <td>
+            {{actor.Nationality}}
+        </td>
+        <td>
+            <ul ng-repeat="role in actor.Roles">
+                <li> {{role}}</li>
+            </ul>
+
+        </td>
+        <td>
+            <input type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" value="Detail" ng-click="Detail(actor.Id)" />
+
+            <input type="button" class="btn btn-success" value="Edit" ng-click="edit(actor.Id)" />
+            <input type="button" class="btn btn-danger" value="Delete" ng-click="Delete(actor.Id)" />
+
+        </td>
+    </tr>
+</table>
