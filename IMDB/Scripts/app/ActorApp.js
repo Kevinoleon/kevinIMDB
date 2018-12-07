@@ -12,6 +12,9 @@ app.controller("myCtrl", function ($scope, $http) {
     $scope.getMovDone = false;
     $scope.isVisible = false;
     $scope.formTitle = 'Add new Actor';
+    $scope.movieIdSelected = null; 
+
+    //postActor
     $scope.PostActor = function () {
         var Action = document.getElementById("btnSave").getAttribute("value");
         if (Action == "Submit") {
@@ -19,7 +22,11 @@ app.controller("myCtrl", function ($scope, $http) {
             Actor.Name = $scope.Name;
             Actor.Nationality = $scope.Nationality;
             Actor.DateOfBirth = $scope.DateOfBirth;
-            Actor.Roles = [{ nameDto: $scope.nameDto, MovieId: "16" }];            
+            Actor.Roles = null;
+            if ($scope.getMovDone != false) {
+                Actor.Roles = [{ nameDto: $scope.nameDto, MovieId: $scope.movieIdSelected }];
+            }
+                        
             $http({
                 method: "post",
                 url: "http://localhost:7130/api/ActorAPI/",
@@ -38,7 +45,7 @@ app.controller("myCtrl", function ($scope, $http) {
             Actor.Name = $scope.Name;
             Actor.Nationality = $scope.Nationality;
             Actor.DateOfBirth = $scope.DateOfBirth;
-            Actor.Roles = [{ nameDto: $scope.nameDto, MovieId: "16" }]
+            Actor.Roles = null;
             $http({
                 method: "put",
                 url: "http://localhost:7130/api/ActorAPI/" + Actor.Id,
@@ -59,7 +66,7 @@ app.controller("myCtrl", function ($scope, $http) {
         }
     }
     $scope.GetAllData = function () {
-        
+        $scope.getMovDone = false;
         $http({
             method: "get",
             url: "http://localhost:7130/api/ActorAPI/"

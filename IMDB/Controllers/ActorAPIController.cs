@@ -32,7 +32,7 @@ namespace IMDB.Controllers
                                     Name = a.Name,
                                     Nationality = a.Nationality,
                                     DateOfBirth = a.DateOfBirth,
-                                    Roles = a.ActorRoles.Select(r => r.Name + " en " + r.Movie.OriginalTitle).ToList()
+                                    Roles = a.ActorRoles.Select(r => r.Name + " in " + r.Movie.OriginalTitle).ToList()
                                 };
 
                 return Ok(actorDtos);                

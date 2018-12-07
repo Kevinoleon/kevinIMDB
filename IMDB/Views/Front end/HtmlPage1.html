@@ -84,25 +84,25 @@
 
                                 <input type="button" class="btn btn-light btn-block" value="Roles" ng-click="popRoles()" />
                                 <div ng-show="isVisible">
-                                    <input class="form-control" type="text" value=""  placeholder="Role Name..." ng-model="nameDto"/>
-                                    <select class="form-control"  placeholder="Role movie..." ng-model="movieIdSelected">
+                                    <input class="form-control" type="text" value="" placeholder="Role Name..." ng-model="nameDto" />
+                                    <select class="form-control" placeholder="Role movie..." ng-model="movieIdSelected">
                                         <option ng-repeat="movie in movies" value="{{movie.Id}}">{{movie.OriginalTitle}} - {{movie.Id}}</option>
                                     </select>
-                                    <input type="hidden" class="form-control"  ng-model="Id" >
-                                </div>  
+                                    <input type="hidden" class="form-control" ng-model="Id">
+                                </div>
 
                             </div>
-                        </div>
-                    </div>          
-
-                </div>                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="button" id="btnSave" class="btn btn-primary btn-block" value="Submit" ng-click="PostActor()" />
                         </div>
                     </div>
 
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="button" id="btnSave" class="btn btn-primary btn-block" value="Submit" ng-click="PostActor()" />
+                    </div>
+                </div>
+
+            </div>
         </div>
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -125,15 +125,15 @@
             </div>
         </div>
 
-        
-    </div>
 
     </div>
 
+</div>
 
-    
 
-    
+
+
+
 
 @{
     ViewBag.Title = "Actores";
