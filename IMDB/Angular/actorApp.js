@@ -65,6 +65,8 @@ app.controller("myCtrl", function ($scope, $http) {
             
         }
     }
+
+    //get all-----------------
     $scope.GetAllData = function () {
         $scope.getMovDone = false;
         $http({

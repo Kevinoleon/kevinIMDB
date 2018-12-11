@@ -259,6 +259,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\Actors\actorDetails.html" />
+    <Content Include="Angular\Actors\actorDetails.js" />
+    <Content Include="Angular\Actors\detailsController.js" />
+    <Content Include="Angular\Actors\editActor.html" />
+    <Content Include="Angular\Actors\editActor.js" />
+    <Content Include="Angular\Actors\editActorController.js" />
     <Content Include="cambios_para_pasar_frontend_a_angular.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -269,12 +275,15 @@
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\ActorApp.js" />
-    <Content Include="Scripts\app\ActorService.js" />
-    <Content Include="Scripts\app\mainCtrl.js" />
-    <Content Include="Scripts\app\ListaActores.js" />
+    <Content Include="Angular\actorApp.js" />
+    <Content Include="Angular\Actors\actorService.js" />
+    <Content Include="Angular\app.js" />
+    <Content Include="Angular\Actors\actorListController.js" />
+    <Content Include="Angular\Actors\listaActores.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -293,8 +302,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\FrontEnd\HtmlPage1.html" />
-    <Content Include="Views\FrontEnd\ListaActores.html" />
+    <Content Include="Angular\Actors\listaActores.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -344,8 +352,7 @@
     <Content Include="Views\Actor\Edit.cshtml" />
     <Content Include="Views\Actor\Index.cshtml" />
     <Content Include="Views\Actor\IndexJs.cshtml" />
-    <None Include="Views\Home\IndexJS.cshtml" />
-    <Content Include="Views\Shared\_LayoutJs.cshtml" />
+    <Content Include="Views\Shared\_LayoutAngular.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

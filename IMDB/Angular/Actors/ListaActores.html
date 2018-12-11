@@ -15,8 +15,8 @@
         <td>
             <b>Actions</b>
         </td>
-    </tr>
-    <tr ng-repeat="actor in actores">
+    </tr>    
+    <tr ng-repeat="actor in actors">
         <td id="actorId">
             {{actor.Id}}
         </td>
@@ -33,10 +33,9 @@
 
         </td>
         <td>
-            <input type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" value="Detail" ng-click="Detail(actor.Id)" />
-
-            <input type="button" class="btn btn-success" value="Edit" ng-click="edit(actor.Id)" />
-            <input type="button" class="btn btn-danger" value="Delete" ng-click="Delete(actor.Id)" />
+            <a class="btn btn-primary" ui-sref="actorDetail({id: actor.Id})">Details</a>
+            <a class="btn btn-success" ui-sref="editActor({id: actor.Id})">Edit</a>
+            <input type="button" class="btn btn-danger" value="Delete" ng-click="$ctrl.deleteActor(actor.Id)" />
 
         </td>
     </tr>

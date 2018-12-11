@@ -1,20 +1,4 @@
-﻿@{
-    ViewBag.Title = "QuadionIMDB";
-}
-
-<div class="jumbotron">
-    <h1>Quadion IMDB</h1>
-    <p class="lead">Creamos un app al estilo de <a class="text-info" href="https://www.imdb.com/">IMDB</a> con el objetivo de poner en practica lo que vamos aprendiendo sobre ASP.Net y MVC</p>
-    <p><a href="http://asp.net" class="btn btn-info btn-lg">Ir al Aplicativo &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <img class="img-responsive text-center"  src="http://www.suarezpepe.com/sp/wp-content/uploads/2014/04/quadion_logo_white_4_3.jpg" alt="Alternate Text" />
-    </div>
-    <div class="col-md-4">
-        <img class="img-responsive text-center" src="http://satyanamsoft.com/Themes/satyanamsoft/Content/images/mvc_05.png" alt="Alternate Text" />
-    </div>
-    <div class="col-md-4">
-        <img class="img-responsive text-center" src="https://www.oscdigital.org/sites/default/files/images/visual-studio-2013-logo_2.png" alt="Alternate Text" />
-    </div>
+﻿<div ng-app="app">
+    <a class="btn btn-primary" ui-sref="actors">Actors</a>
+    <ui-view></ui-view>
 </div>

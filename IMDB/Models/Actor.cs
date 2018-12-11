@@ -17,6 +17,7 @@ namespace IMDB.Models
         [Required]
         [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public virtual DateTime DateOfBirth { get; set; }
+
         public virtual int age { get
             {
                 TimeSpan i = DateTime.Today - DateOfBirth;
