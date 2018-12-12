@@ -20,9 +20,18 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         template: '<edit-actor></edit-actor>'
     };
 
+    let createActor = {
+        url: '/actor/create',
+        name: 'createActor',
+        template: '<create-actor></create-actor>'
+    };
+
     $urlRouterProvider.otherwise('/');
     $stateProvider.state(actors);
+    $stateProvider.state(createActor);
     $stateProvider.state(actorDetails);
     $stateProvider.state(editActor);
+    
+    
     });
 })(angular);

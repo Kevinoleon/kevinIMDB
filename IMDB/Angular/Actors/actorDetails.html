@@ -40,13 +40,17 @@
                 </dd>
 
             </dl>
-            
-            <a class="btn btn-default" ui-sref="actors">Go back</a>
-            <a class="btn btn-success">Edit</a>
-            <a class="btn btn-danger">Delete</a>
+            <div class="row">
+                <div class="col-lg-9 ">
+                    <a class="btn btn-success btn-block col-md-3 m-0" ui-sref="editActor({id: actor.Id})">Edit</a>
+                </div>
+                <div class="col-lg-3 ">
+                    <a class="btn btn-default btn-block mx-0" ui-sref="actors">Back to List!</a>
+                </div>
 
 
-        </div>
+
+            </div>
         <!-- Grid column -->
 
     </div>

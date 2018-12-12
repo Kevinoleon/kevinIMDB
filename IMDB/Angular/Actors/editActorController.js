@@ -5,18 +5,19 @@
 
         let $ctrl = this;
         actorService.getDetails($stateParams.id).then(function (actor) {
+
+            
             
             $ctrl.actorToEdit = actor;
             $ctrl.actorToEdit.DateOfBirth = new Date(actor.DateOfBirth);
 
         });
 
-        ////envía el actor a la pantalla de edición
-        //function editActorController() {
-        //    actorService.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ($stateParams.id).then(function (actor) {
-        //        $scope.actor = actor;
-        //    });
-        //}
+        $ctrl.editActor = function editActor(actorToPut) {
+            actorService.putRequest(actorToPut).then(function (response) {
+                alert(response);
+            });
+        }
 
         
     }

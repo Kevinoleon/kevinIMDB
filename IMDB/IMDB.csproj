@@ -261,9 +261,12 @@
   <ItemGroup>
     <Content Include="Angular\Actors\actorDetails.html" />
     <Content Include="Angular\Actors\actorDetails.js" />
+    <Content Include="Angular\Actors\createActor.js" />
     <Content Include="Angular\Actors\detailsController.js" />
+    <Content Include="Angular\Actors\createActor.html" />
     <Content Include="Angular\Actors\editActor.html" />
     <Content Include="Angular\Actors\editActor.js" />
+    <Content Include="Angular\Actors\createActorController.js" />
     <Content Include="Angular\Actors\editActorController.js" />
     <Content Include="cambios_para_pasar_frontend_a_angular.txt" />
     <Content Include="Content\bootstrap.css" />

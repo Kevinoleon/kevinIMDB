@@ -5,7 +5,7 @@
         //esta url es igual para los metodos
         let urlActorApi = "http://localhost:7130/api/ActorAPI/";
         
-        return { getActors, getDetails,deleteActor, putRequest};
+        return { getActors, getDetails,deleteActor, putRequest, postRequest};
 
         //metodo general que utilizaran los demas metodos.
         function getRequest(url) {
@@ -36,20 +36,34 @@
             return promise;
         };
 
-        function putRequest(id, actor) {
+        function putRequest(actor) {
 
             let actorRequest = actor;
 
             let promise = $http({
                 method: "put",
-                url: "http://localhost:7130/api/ActorAPI/" + id,
+                url: "http://localhost:7130/api/ActorAPI/" + actorRequest.Id,
                 datatype: "json",
                 data: JSON.stringify(actorRequest)
             }).then(function (response) {
                 return response.data;
             });
             return promise;
-        };        
+        }; 
+        function postRequest(actor) {
+
+            let actorRequest = actor;
+
+            let promise = $http({
+                method: "post",
+                url: "http://localhost:7130/api/ActorAPI/" + 0,
+                datatype: "json",
+                data: JSON.stringify(actorRequest)
+            }).then(function (response) {
+                return response.data;
+            });
+            return promise;
+        };
     }
 
     actorService.$inject = ["$http"];
