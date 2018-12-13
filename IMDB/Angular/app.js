@@ -26,11 +26,18 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         template: '<create-actor></create-actor>'
     };
 
+    let deleteActor = {
+        url: '/actor/delete/:id',
+        name: 'deleteActor',
+        template: '<delete-actor></delete-actor>'
+    };
+
     $urlRouterProvider.otherwise('/');
     $stateProvider.state(actors);
     $stateProvider.state(createActor);
     $stateProvider.state(actorDetails);
     $stateProvider.state(editActor);
+    $stateProvider.state(deleteActor);
     
     
     });

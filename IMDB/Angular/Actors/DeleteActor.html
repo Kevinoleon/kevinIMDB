@@ -1,5 +1,5 @@
 ﻿<div>
-    <h1> Detalles </h1>
+    <h1> Are you Sure? </h1>
 
 </div>
 <!-- News jumbotron -->
@@ -42,10 +42,10 @@
             </dl>
             <div class="row">
                 <div class="col-lg-9 ">
-                    <a class="btn btn-success btn-block col-md-3 m-0" ui-sref="editActor({id: actor.Id})">Edit</a>
+                    <a class="btn btn-danger btn-block col-md-3 m-0" ng-click="$ctrl.deleteActor(actor.Id)" ui-sref="actors" ui-sref-opts="{reload:true}">Yes, Delete it</a>
                 </div>
                 <div class="col-lg-3 ">
-                    <a class="btn btn-default btn-block mx-0" ui-sref="actors" ui-sref-opts="{reload:true}">Back to List!</a>
+                    <a class="btn btn-default btn-block mx-0" ui-sref="actors" ui-sref-opts="{reload:true}">No, Back to List!</a>
                 </div>
 
 

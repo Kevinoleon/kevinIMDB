@@ -259,9 +259,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\Actors\deleteActor.html" />
+    <Content Include="Angular\Actors\deleteActor.js" />
     <Content Include="Angular\Actors\actorDetails.html" />
     <Content Include="Angular\Actors\actorDetails.js" />
     <Content Include="Angular\Actors\createActor.js" />
+    <Content Include="Angular\Actors\deleteActorController.js" />
     <Content Include="Angular\Actors\detailsController.js" />
     <Content Include="Angular\Actors\createActor.html" />
     <Content Include="Angular\Actors\editActor.html" />
@@ -302,6 +305,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Angular\Movies\movieService.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />

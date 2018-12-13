@@ -2,7 +2,7 @@
 
 <form class="form-horizontal">
     <div class="row">
-        <div class="">
+        <div class="col-md-3">
             <div class="form-group">
                 <label class="control-label ">Name:</label>
                 <div class="">
@@ -33,10 +33,24 @@
                 </div>
             </div>
         </div>
+        <!------------------------------------------------------------------------------------------>
+        <div class="col-md-9" style="margin-top:47px;">
+            
+
+            <input type="button" class="btn btn-light btn-block" value="Roles" ng-click="$ctrl.ShowHide()" />
+            <div class="" ng-show="$ctrl.IsVisible">
+                <input class="form-control " type="text" value="" placeholder="Role Name..." ng-model="$ctrl.Role.nameDto" />
+                <select class=" form-control" placeholder="Role movie..." ng-model="$ctrl.Role.MovieId">
+                    <option ng-repeat="movie in $ctrl.movies" value="{{movie.Id}}">{{movie.OriginalTitle}} - {{movie.Id}}</option>
+                </select>
+                <input type="hidden" class="form-control" ng-model="Id">
+            </div>
+        </div>
+        <!------------------------------------------------------------------------------------------>
         <div class="form-group form-inline">
             <div class="row">
-                <button class="btn btn-info col-lg-10" ng-click="$ctrl.createActor($ctrl.actorToCreate)">save</button>
-                <a class="btn btn-default col-lg-2" ui-sref="actors">Back to list!</a>
+                <button class="btn btn-info col-lg-10" ng-click="$ctrl.createActor($ctrl.actorToCreate)" ui-sref="actors" ui-sref-opts="{reload:true}">save</button>
+                <a class="btn btn-default col-lg-2" ui-sref="actors" ui-sref-opts="{reload:true}">Back to list!</a>
             </div>
         </div>
     </div>

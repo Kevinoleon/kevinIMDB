@@ -37,14 +37,14 @@
         <td>
             <a class="btn btn-primary" ui-sref="actorDetail({id: actor.Id})">Details</a>
             <a class="btn btn-success" ui-sref="editActor({id: actor.Id})">Edit</a>
-            <input type="button" class="btn btn-danger" value="Delete" ng-click="$ctrl.deleteActor(actor.Id)" />
+            <input type="button" class="btn btn-danger" value="Delete" ui-sref="deleteActor({id: actor.Id})" />
 
         </td>
     </tr>
 </table>
 <div class="row">
-    <div class="col-md-offset-7">
-        <a class="btn btn-info btn-block col-md-3" ui-sref="createActor">Create Actor</a>
+    <div class="">
+        <a class="btn btn-info btn-block c" ui-sref="createActor">Create Actor</a>
     </div>
 </div>
 
