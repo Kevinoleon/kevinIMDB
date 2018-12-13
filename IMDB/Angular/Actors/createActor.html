@@ -1,6 +1,6 @@
 ﻿<h2>Create Actor</h2>
 
-<form class="form-horizontal">
+<form class="form-horizontal" name="actorForm">
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
@@ -9,7 +9,7 @@
                     <input type="text" class="form-control" ng-model="$ctrl.actorToCreate.Id" style="display: none;">
                     <div class="form-inline">
                         <span class="glyphicon glyphicon-user"></span>
-                        <input type="text" class="form-control" ng-model="$ctrl.actorToCreate.Name" placeholder="Enter Name">
+                        <input type="text" class="form-control" ng-model="$ctrl.actorToCreate.Name" placeholder="Enter Name" name="name" required>
                     </div>
 
                 </div>
@@ -39,17 +39,21 @@
 
             <input type="button" class="btn btn-light btn-block" value="Roles" ng-click="$ctrl.ShowHide()" />
             <div class="" ng-show="$ctrl.IsVisible">
-                <input class="form-control " type="text" value="" placeholder="Role Name..." ng-model="$ctrl.Role.nameDto" />
-                <select class=" form-control" placeholder="Role movie..." ng-model="$ctrl.Role.MovieId">
-                    <option ng-repeat="movie in $ctrl.movies" value="{{movie.Id}}">{{movie.OriginalTitle}} - {{movie.Id}}</option>
-                </select>
-                <input type="hidden" class="form-control" ng-model="Id">
+                <button ng-click="$ctrl.actorToCreate.Roles.push({})">Add</button>
+                <div ng-repeat="role in $ctrl.actorToCreate.Roles">
+                    <input class="form-control " type="text" placeholder="Role Name..." ng-model="role.nameDto" />
+                    <select class=" form-control" placeholder="Role movie..." ng-model="role.MovieId">
+                        <option ng-repeat="movie in $ctrl.movies" value="{{movie.Id}}">{{movie.OriginalTitle}} - {{movie.Id}}</option>
+                    </select>
+                    <button ng-click="$ctrl.actorToCreate.Roles.slice($ctrl.actorToCreate.Roles.indexOf(role), 1)">Delete</button>
+                </div>
+
             </div>
         </div>
         <!------------------------------------------------------------------------------------------>
         <div class="form-group form-inline">
             <div class="row">
-                <button class="btn btn-info col-lg-10" ng-click="$ctrl.createActor($ctrl.actorToCreate)" ui-sref="actors" ui-sref-opts="{reload:true}">save</button>
+                <button class="btn btn-info col-lg-10" ng-click="$ctrl.createActor()" ui-sref="actors" ui-sref-opts="{reload:true}" ng-disabled="actorForm.$invalid">save</button>
                 <a class="btn btn-default col-lg-2" ui-sref="actors" ui-sref-opts="{reload:true}">Back to list!</a>
             </div>
         </div>

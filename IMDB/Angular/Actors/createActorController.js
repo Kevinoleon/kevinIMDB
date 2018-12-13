@@ -5,26 +5,24 @@
 
         let $ctrl = this;
         $ctrl.IsVisible = false;
+
+        $ctrl.actorToCreate = { Roles: [] };
+
         function getMovies() {
                 movieService.getMovies().then(function (movies) {
                     $ctrl.movies = movies;
                 });
             }
         
-        $ctrl.createActor = function(actorToPost) {
-            actorToPost.Roles = [];
-            actorToPost.Roles.push($ctrl.Role);
-            actorService.postRequest(actorToPost).then(function (response) {
-                alert(response);
+        $ctrl.createActor = function () {
+            debugger;
+            actorService.postRequest($ctrl.actorToCreate).then(function (savedActor) {
+                $ctrl.actorToCreate = $ctrl.savedActor;
             });
         };
 
         $ctrl.ShowHide = function () {
-            if ($ctrl.IsVisible!= true) {
-                $ctrl.IsVisible  = true;
-            } else {
-                $ctrl.isVisible = false;
-            }           
+            $ctrl.IsVisible = !$ctrl.IsVisible;
         }
         
 

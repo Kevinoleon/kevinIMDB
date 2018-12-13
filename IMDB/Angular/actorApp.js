@@ -126,23 +126,10 @@ app.controller("myCtrl", function ($scope, $http) {
     }
     $scope.popRoles = function () {
         if ($scope.isVisible != true ) {
-            $scope.isVisible = $scope.isVisible = true;
-            if ($scope.getMovDone===false) {
-                $http({
-                    method: "get",
-                    url: "http://localhost:7130/api/MovieAPI/"
-                }).then(function (response) {
-                    $scope.movies = response.data;
-                    $scope.getMovDone = true;
-                }, function () {
-                    alert("Error Occur");
-                })
-                
-            }
+            $scope.isVisible = $scope.isVisible = true; 
             
             return;
         }
-        $scope.isVisible = $scope.isVisible = false;
-        
+        $scope.isVisible = $scope.isVisible = false;        
     };
 })  
