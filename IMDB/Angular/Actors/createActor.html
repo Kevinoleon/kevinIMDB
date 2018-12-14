@@ -5,8 +5,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label class="control-label ">Name:</label>
-                <div class="">
-                    <input type="text" class="form-control" ng-model="$ctrl.actorToCreate.Id" style="display: none;">
+                <div class="">                    
                     <div class="form-inline">
                         <span class="glyphicon glyphicon-user"></span>
                         <input type="text" class="form-control" ng-model="$ctrl.actorToCreate.Name" placeholder="Enter Name" name="name" required>
@@ -40,7 +39,6 @@
                         <label for="file-input">
                             <img src="https://www.colourbox.com/preview/26114474-bearded-men-face-hipster-character-vector-illustration.jpg" width="200" height="300" />
                         </label>
-
                         <input class="form-control" id="file-input" type="file" style="display: none;"/>
                     </div>
                 </div>
@@ -55,10 +53,10 @@
                     <br />
                     <div class="">
                         <label class="col-lg-1 ">Role:</label>
-                        <input class="form-control col-lg-5" type="text" placeholder="Role Name..." ng-model="role.nameDto" />
+                        <input class="form-control col-lg-5" type="text" placeholder="Role Name..." ng-model="role.nameDto" required/>
                         <label class="col-lg-1 ">Movie:  </label>
                         <select class=" form-control col-lg-5 " placeholder="Role movie..." ng-model="role.MovieId">
-                            <option ng-repeat="movie in $ctrl.movies" value="{{movie.Id}}">{{movie.OriginalTitle}} - {{movie.Id}}</option>
+                            <option ng-repeat="movie in $ctrl.movies" value="{{movie.Id}}">{{movie.OriginalTitle}} - {{movie.Id}} </option>
                         </select>
                     </div>
                     <button class="btn btn-danger btn-block" ng-click="$ctrl.actorToCreate.Roles.splice($ctrl.actorToCreate.Roles.indexOf(role), 1)">Delete</button>

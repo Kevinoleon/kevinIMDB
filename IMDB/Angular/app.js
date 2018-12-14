@@ -17,13 +17,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     let editActor = {
         url: '/actor/edit/:id',
         name: 'editActor',
-        template: '<edit-actor></edit-actor>'
+        template: '<newedit-actor></newedit-actor>'
     };
 
     let createActor = {
         url: '/actor/create',
         name: 'createActor',
-        template: '<create-actor></create-actor>'
+        template: '<newedit-actor></newedit-actor>'
     };
 
     let deleteActor = {

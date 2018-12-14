@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System.IO;
+using System.Security.Cryptography;
+using System.Web;
+using System.Web.Hosting;
 using System.Web.Optimization;
 
 namespace IMDB
@@ -26,6 +29,37 @@ namespace IMDB
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular")
+                .Include("~/Scripts/angular.js")
+                .Include("~/Scripts/angular-ui-router.js")
+                .Include("~/Angular/app.js")
+                .Include("~/Angular/Actors/*.js")
+                .Include("~/Angular/Movies/*.js"));
+
+            foreach (var bundle in bundles)
+            {
+                bundle.Transforms.Add(new FileHashVersionBundleTransform());
+            }
+        }
+
+        public class FileHashVersionBundleTransform : IBundleTransform
+        {
+            public void Process(BundleContext context, BundleResponse response)
+            {
+                foreach (var file in response.Files)
+                {
+                    using (FileStream fs = File.OpenRead(HostingEnvironment.MapPath(file.IncludedVirtualPath)))
+                    {
+                        //get hash of file contents
+                        byte[] fileHash = new SHA256Managed().ComputeHash(fs);
+
+                        //encode file hash as a query string param
+                        string version = HttpServerUtility.UrlTokenEncode(fileHash);
+                        file.IncludedVirtualPath = string.Concat(file.IncludedVirtualPath, "?v=", version);
+                    }
+                }
+            }
         }
     }
 }

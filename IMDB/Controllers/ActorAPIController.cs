@@ -54,7 +54,7 @@ namespace IMDB.Controllers
             }
             var actorDto = new ActorDTO();
 
-            ActorDtoMapper.MapToDTOModel(sessionActor, actorDto);
+            ActorDtoMapper.MapModelToDto(sessionActor, actorDto);
             
 
             return Ok(actorDto);
@@ -76,11 +76,13 @@ namespace IMDB.Controllers
             }
 
             Actor actor = new Actor();
-            ActorDtoMapper.MapFromDTOModel(actorDto, actor, session);
+            ActorDtoMapper.MapDtoToModel(actorDto, actor, session);
 
             session.Transaction.Commit();
 
-            return Ok("Actor created");
+            ActorDtoMapper.MapModelToDto(actor, actorDto);
+
+            return Ok(actorDto);
         }
 
         // PUT: api/ActorDTO/5
@@ -101,17 +103,14 @@ namespace IMDB.Controllers
 
             //sessionActor.ActorRoles.Clear()
 
-            ActorDtoMapper.MapFromDTOModel(actorDto, sessionActor, session);
+            ActorDtoMapper.MapDtoToModel(actorDto, sessionActor, session);
 
             session.Transaction.Commit();
-            
-
-            return Ok("Actor edited");         
 
 
+            ActorDtoMapper.MapModelToDto(sessionActor, actorDto);
 
-            
-
+            return Ok(actorDto);         
         }
 
         // DELETE: /api/ActorAPI/28
