@@ -259,7 +259,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Angular\Actors\actorRole.html" />
     <Content Include="Angular\Actors\deleteActor.html" />
     <Content Include="Angular\Actors\deleteActor.js" />
     <Content Include="Angular\Actors\actorDetails.html" />
@@ -272,7 +271,6 @@
     <Content Include="Angular\Actors\editActor.js" />
     <Content Include="Angular\Actors\createActorController.js" />
     <Content Include="Angular\Actors\editActorController.js" />
-    <Content Include="Angular\Actors\actorRoleComp.js" />
     <Content Include="cambios_para_pasar_frontend_a_angular.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
