@@ -2,7 +2,7 @@
     let myApp = angular.module('app');
 
     let deleteActor = {
-        templateUrl: '/Angular/Actors/deleteActor.html',
+        templateUrl: '/Angular/Actors/Delete/deleteActor.html',
         controller: 'deleteActorController',
         bindings: {
             Actores: '<'

@@ -32,10 +32,12 @@ namespace IMDB
 
             bundles.Add(new ScriptBundle("~/bundles/angular")
                 .Include("~/Scripts/angular.js")
-                .Include("~/Scripts/angular-ui-router.js")
-                .Include("~/Angular/app.js")
-                .Include("~/Angular/Actors/*.js")
-                .Include("~/Angular/Movies/*.js"));
+                .Include("~/Scripts/angular-ui-router.js").IncludeDirectory("~/Angular", "*.js", true));
+            //.Include("~/Angular/app.js")
+            //.Include("~/Angular/Actors/*.js")
+            //.Include("~/Angular/Actors/List/*.js")
+            //.Include("~/Angular/Actors/List/*.js")
+            //.Include("~/Angular/Movies/*.js"));
 
             foreach (var bundle in bundles)
             {

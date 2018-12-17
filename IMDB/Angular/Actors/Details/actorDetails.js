@@ -2,8 +2,8 @@
     let myApp = angular.module('app');
 
     let actorDetails = {
-        templateUrl: '/Angular/Actors/actorDetails.html',
-        controller: 'detailsActorController',
+        templateUrl: '/Angular/Actors/Details/actorDetails.html',
+        controller: 'actorDetailsController',
         bindings: {
             Actores: '<'
         }

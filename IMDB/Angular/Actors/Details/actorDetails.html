@@ -1,5 +1,5 @@
 ﻿<div>
-    <h1> Are you Sure? </h1>
+    <h1> Detalles </h1>
 
 </div>
 <!-- News jumbotron -->
@@ -24,28 +24,31 @@
         <!-- Grid column -->
         <div class="col-md-7 text-md-left ml-3 mt-3">
 
-            <h1> {{actor.Name}}</h1>
+            <h1> {{$ctrl.actor.Name}}</h1>
 
             <dl class="dl-horizontal">
                 <dt>Birth Date: </dt>
-                <dd>{{actor.DateOfBirth}}</dd>
+                <dd>{{$ctrl.actor.DateOfBirth}}</dd>
                 <dt>Nationality: </dt>
-                <dd>{{actor.Nationality}}</dd>
+                <dd>{{$ctrl.actor.Nationality}}</dd>
                 <dt>Age: </dt>
-                <dd>{{actor.age}}</dd>
+                <dd>{{$ctrl.actor.age}}</dd>
                 <dt>Roles: </dt>
-                <dd><br/><ul class="list-unstyled" ng-repeat="role in actor.Roles">
+                <dd><br/><ul class="list-unstyled" ng-repeat="role in $ctrl.actor.Roles">
                         <li class=""> {{role.NameDto}}</li>
                     </ul>
                 </dd>
 
             </dl>
             <div class="row">
-                <div class="col-lg-9 ">
-                    <a class="btn btn-danger btn-block col-md-3 m-0" ng-click="$ctrl.deleteActor(actor.Id)" ui-sref="actors" ui-sref-opts="{reload:true}">Yes, Delete it</a>
+                <div class="col-lg-6 ">
+                    <a class="btn btn-success btn-block col-md-3 m-0" ui-sref="editActor({id: $ctrl.actor.Id})">Edit</a>
                 </div>
                 <div class="col-lg-3 ">
-                    <a class="btn btn-default btn-block mx-0" ui-sref="actors" ui-sref-opts="{reload:true}">No, Back to List!</a>
+                    <a class="btn btn-danger btn-block col-md-3 m-0" ui-sref="deleteActor({id: $ctrl.actor.Id})">Delete</a>
+                </div>
+                <div class="col-lg-3 ">
+                    <a class="btn btn-default btn-block mx-0" ui-sref="actors" ui-sref-opts="{reload:true}">Back to List!</a>
                 </div>
 
 

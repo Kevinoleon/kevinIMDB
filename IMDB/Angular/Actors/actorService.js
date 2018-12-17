@@ -5,7 +5,13 @@
         //esta url es igual para los metodos
         let urlActorApi = "http://localhost:7130/api/ActorAPI/";
         
-        return { getActors, getDetails,deleteActor, putRequest, postRequest};
+        return { getActors, getDetails, deleteActor, putRequest, postRequest };
+
+        function processActor(actor) {
+            if (actor.DateOfBirth) {
+                movie.DateOfBirth = new Date(actor.DateOfBirth);
+            }
+        }
 
         //metodo general que utilizaran los demas metodos.
         function getRequest(url) {

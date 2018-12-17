@@ -1,7 +1,7 @@
 ﻿(function (angular) {
     let myApp = angular.module('app');
 
-    let editActorController = function ($q, $stateParams, actorService, movieService) {
+    let editCreateActorController = function ($q, $stateParams, actorService, movieService) {
 
         let $ctrl = this;
         $ctrl.IsVisible = false;
@@ -16,6 +16,7 @@
                 $ctrl.actor = actor;
             }).finally(function () {
                 $ctrl.saving = false;
+                alert("actor saved!");
             });
         }
 
@@ -37,9 +38,9 @@
     }
 
 
-    editActorController.$inject = ['$q', '$stateParams', 'actorService', 'movieService'];
+    editCreateActorController.$inject = ['$q', '$stateParams', 'actorService', 'movieService'];
 
-    myApp.controller("neweditActorController", editActorController);
+    myApp.controller("editCreateActorController", editCreateActorController);
 
 
 })(angular);

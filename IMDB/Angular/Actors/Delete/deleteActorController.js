@@ -1,12 +1,12 @@
 ﻿(function (angular) {
     let myApp = angular.module('app');
 
-    let deleteActorController = function ($scope, $stateParams, actorService) {
+    let deleteActorController = function ($stateParams, actorService) {
 
         let $ctrl = this;
                 
         actorService.getDetails($stateParams.id).then(function (actor) {
-            $scope.actor = actor;
+            $ctrl.actor = actor;
         });
 
         $ctrl.deleteActor = function deleteActor(id) {
@@ -19,7 +19,7 @@
     }
 
 
-    deleteActorController.$inject = ['$scope', '$stateParams', 'actorService'];
+    deleteActorController.$inject = ['$stateParams', 'actorService'];
 
     myApp.controller("deleteActorController", deleteActorController);
 
