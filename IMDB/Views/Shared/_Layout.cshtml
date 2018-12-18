@@ -3,15 +3,59 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - IMDB</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top ">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top py-4" style="height:70px !important" >
         <div class="container">
-            
+            <a href="#home" class="navbar-brand ">
+                <img src="http://cdn.onlinewebfonts.com/svg/img_342630.png" width="70" height="60">
+                <h3 class="d-inline align-middle"> Quadion IMDB</h3>
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a href="#" style="font-size:25px" class="nav-link dropdown-toggle bg-primary" data-toggle="dropdown">MVC C#</a>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("List Movies", "Index", "Movie", new { @class = "" }) <br />
+                            @Html.ActionLink("List Actors", "Index", "Actor",  new { @class = "" })
+                            
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="font-size:25px" class="nav-link dropdown-toggle" data-toggle="dropdown">Angular</a>
+                        <div class="dropdown-menu">
+                            <a class="" ui-sref="actors">List Actors</a>
+                        </div>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Quadion Technologies</p>
+        </footer>
+    </div>
+
+    
+
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -28,17 +72,7 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Quadion Technologies</p>
-        </footer>
-    </div>
+    </div>*@
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

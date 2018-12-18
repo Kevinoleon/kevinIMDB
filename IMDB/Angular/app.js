@@ -11,7 +11,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     let actorDetails = {
         url: '/actor/:id',
         name: 'actorDetail',
-        template: '<actor-details></actor-details>'
+        template: '<actor-details-delete></actor-details-delete>'
     };
 
     let editActor = {
@@ -23,13 +23,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     let createActor = {
         url: '/actor/create',
         name: 'createActor',
-        template: '<newedit-actor></newedit-actor>'
+        template: '<edit-create-actor></edit-create-actor>'
     };
 
     let deleteActor = {
         url: '/actor/delete/:id',
         name: 'deleteActor',
-        template: '<delete-actor></delete-actor>'
+        template: '<actor-details-delete><actor-header></actor-header><actor-movie></actor-movie></actor-details-delete>'
     };
 
     $urlRouterProvider.otherwise('/');
