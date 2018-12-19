@@ -48,7 +48,7 @@
 
             let promise = $http({
                 method: "put",
-                url: "http://localhost:7130/api/ActorAPI/" + actorRequest.Id,
+                url: urlActorApi + actorRequest.Id,
                 datatype: "json",
                 data: JSON.stringify(actorRequest)
             }).then(function (response) {
@@ -62,7 +62,7 @@
 
             let promise = $http({
                 method: "post",
-                url: "http://localhost:7130/api/ActorAPI/" + 0,
+                url: urlActorApi + 0,
                 datatype: "json",
                 data: JSON.stringify(actorRequest)
             }).then(function (response) {
