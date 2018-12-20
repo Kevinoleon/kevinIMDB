@@ -4,101 +4,34 @@
     <input class="form-control mr-2 btn btn-info btn-block " value="Create New" ui-sref="createMovie({})">
 </form>
 
-
-<div class="card-columns">
-    <div class="card" ng-repeat="movie in $ctrl.movies | filter:$ctrl.filter">
-
-        <img class="card-img-top  img-rounded" src="https://www.freeiconspng.com/uploads/movie-icon-11.png" height="300">
-        <h4 class="card-title text-secondary text-center">{{movie.OriginalTitle}}</h4>
-        <div class="card-body">
+<div class="media row mb-2 bg-light" ng-repeat="movie in $ctrl.movies | filter:$ctrl.filter" style="border:1px solid; border-color: #99c2ff ; border-radius: 20px">
+    <div class="col-2" >
+        <img class="" src="http://iconshow.me/media/images/Mixed/small-n-flat-icon/png/512/movie.png" height="194" width="170">
+    </div>    
+    <div class="media-body col-4 border-left border-right border-info m-1">      
+        
+            <h4 class="text-primary">{{movie.OriginalTitle}}</h4>
             <dl class="dl-horizontal">
-                <dt>Birth Date: </dt>
+                <dt>Release date: </dt>
                 <dd>{{movie.ReleaseDate | date}}</dd>
                 <dt>Country: </dt>
                 <dd>{{movie.Country}}</dd>
-                <dt>Characters: </dt>
-                <dd>
-                    <ul class="list-group list-unstyled" ng-repeat="role in movie.Characters">
-                        <li class="list-group-item  list-group-item-light"> {{role}}</li>
-                    </ul>
-                </dd>
 
             </dl>
-            <div class="row col-lg-12 btn-group" style="margin:0; padding:0">
+            <div class=" btn-group btn-block mb-1" >
                 <a class="btn btn-info col-lg-4  " ui-sref="movieDetail({id: movie.Id, btn: movie.Id})">Details</a>
                 <a class="btn btn-primary col-lg-4 " ui-sref="editMovie({id: movie.Id})">Edit</a>
-                <input type="button" class="btn btn-danger col-lg-4 " value="Delete" ui-sref="deleteMovie({id: movie.Id})" />
-            </div>
-        </div>
+                <input type="button" class=" btn btn-outline-danger col-lg-4 " value="Delete" ui-sref="deleteMovie({id: movie.Id})" style="background-color:#e0d1d1"/>
+            </div>                
     </div>
-
-
-    <!--<div class="card bg-primary text-white">
-        <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">
-                This is a wider card with supporting text below as a natural lead-in to additional content. This card
-                has even longer content than the first to show that equal height action.
-            </p>
-            <p class="card-text">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
-        </div>
-    </div>-->
+    <div class="col-6 m-1">
+        <dl>
+            <dt>Characters: </dt>
+            <dd>
+                <ul class="list-group list-unstyled" ng-repeat="role in movie.Characters">
+                    <li class="list-group-item  list-group-item-primary"> {{role}}</li>
+                </ul>
+            </dd>
+        </dl>
+    </div>   
 </div>
-
-
-
-<!--<table cellpadding="12" class="table table-bordered table-hover" style="margin:0">
-    <tr>
-        <td>
-            <b>Id</b>
-        </td>
-        <td>
-            <b>OriginalTitle</b>
-        </td>
-        <td>
-            <b>Country</b>
-        </td>
-        <td>
-            <b>Characters</b>
-        </td>
-        <td>
-            <b>Actions</b>
-        </td>
-    </tr>
-    <tr ng-repeat="movie in $ctrl.movies">
-        <td id="movieId">
-            {{movie.Id}}Acrtor
-        </td>
-        <td>
-            {{movie.OriginalTitle}}
-        </td>
-        <td>
-            {{movie.Country}}
-        </td>
-        <td>
-            <ul ng-repeat="role in movie.Characters">
-                <li> {{role}}</li>
-            </ul>
-
-        </td>
-        <td>
-            <div class="row col-lg-12 btn-group"style="margin:0; padding:0">
-                <a class="btn btn-info col-lg-4  " ui-sref="movieDetail({id: movie.Id})">Details</a>
-                <a class="btn btn-primary col-lg-4 " ui-sref="editMovie({id: movie.Id})">Edit</a>
-                <input type="button" class="btn btn-danger col-lg-4 " value="Delete" ui-sref="deleteMovie({id: movie.Id})" />
-            </div>
-
-
-        </td>
-    </tr>
-    <tr>
-
-    </tr>
-</table>
-<div class="container row"  >
-    <div class="">
-        <a class="btn btn-success btn-block" >Create Movie</a>
-    </div>
-</div>-->
