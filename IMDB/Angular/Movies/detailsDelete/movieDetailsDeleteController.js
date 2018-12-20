@@ -1,37 +1,37 @@
 ﻿(function (angular) {
     let myApp = angular.module('app');
 
-    let actorDetailseleteController = function ($stateParams, actorService, $state) {
+    let movieDetailDeleteController = function ($stateParams, movieService, $state) {
 
         let $ctrl = this;
         $ctrl.isDelete = true;
 
-        if ($state.current.name != 'deleteActor') {
+        if ($state.current.name != 'deleteMovie') {
             $ctrl.pageTitle = "Details";
             $ctrl.isDelete = false;
-            
+
         } else {
             $ctrl.pageTitle = "Are you sure you want to delete it?"
-            
+
         }
 
         $ctrl.delete = function (id) {
-            actorService.deleteActor(id).then(function (response) {
+            movieService.deleteMovie(id).then(function (response) {
                 alert(response);
             })
         }
-    
-        actorService.getDetails($stateParams.id).then(function (actor) {
-            $ctrl.actor = actor;            
+
+        movieService.getDetails($stateParams.id).then(function (movie) {
+            $ctrl.movie = movie;
         })
 
-        
+
     }
 
 
-    actorDetailseleteController.$inject = ['$stateParams', 'actorService', '$state'];
+    movieDetailDeleteController.$inject = ['$stateParams', 'movieService', '$state'];
 
-    myApp.controller("actorDetailsDeleteController", actorDetailseleteController);
+    myApp.controller("movieDetailsDeleteController", movieDetailDeleteController);
 
 
 })(angular);

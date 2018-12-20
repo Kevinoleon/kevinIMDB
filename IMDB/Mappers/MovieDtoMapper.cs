@@ -10,14 +10,14 @@ namespace IMDB.Mappers
 {
     public class MovieDtoMapper
     {
-        public static void MapToDTOModel(Movie source, MovieDTO destination)
+        public static void MapModelToDto(Movie source, MovieDTO destination)
         {
             destination.Id = source.Id;
             destination.OriginalTitle = source.OriginalTitle;
             destination.ReleaseDate = source.ReleaseDate;
             destination.Country = source.Country;
                         
-            destination.Characters = source.MovieRoles.Select(r => RoleDtoMapper.MapToDTOModel(r, new RoleDTO())).ToList();
+            destination.Characters = source.MovieRoles.Select(r => RoleDtoMapper.MapModelToDto(r, new RoleDTO())).ToList();
 
             //destination.Characters = source.MovieRoles.Select(r => new RoleDTO
             //{
@@ -27,7 +27,7 @@ namespace IMDB.Mappers
             //}).ToList();
         }
 
-        public static void MapFromDTOModel(MovieDTO source, Movie destination, ISession session)
+        public static void MapDtoToModel(MovieDTO source, Movie destination, ISession session)
         {
             destination.Id = source.Id;
             destination.OriginalTitle = source.OriginalTitle;
@@ -36,25 +36,41 @@ namespace IMDB.Mappers
 
             session.Save(destination);
 
-
-
-
-            // add or update associated roles
-            foreach (var role in source.Characters)
+            if (source.Characters != null)
             {
-                role.MovieId = destination.Id;
+                destination.MovieRoles.Clear();
 
-                if(role.Id==0  || session.Get<Role>(role.Id)==null)
+                // add or update associated roles
+                foreach (var sourceRole in source.Characters)
                 {
-                    role.Id = 0;
-                    destination.MovieRoles.Add(RoleDtoMapper.MapFromDTOModel(role, new Role(), session));
-                }
-                else
-                {
-                    RoleDtoMapper.MapFromDTOModel(role, session.Get<Role>(role.Id), session);
+                    sourceRole.MovieId = destination.Id;
+                    var destinationRole = (sourceRole.Id == 0 ? null : session.Get<Role>(sourceRole.Id)) ?? new Role();
+                    destination.MovieRoles.Add(RoleDtoMapper.MapDtoToModel(sourceRole, destinationRole, session));
                 }
             }
-            
+
+
+
+
+
+
+
+
+            //foreach (var role in source.Characters)
+            //{
+            //    role.MovieId = destination.Id;
+
+            //    if(role.Id==0  || session.Get<Role>(role.Id)==null)
+            //    {
+            //        role.Id = 0;
+            //        destination.MovieRoles.Add(RoleDtoMapper.MapFromDTOModel(role, new Role(), session));
+            //    }
+            //    else
+            //    {
+            //        RoleDtoMapper.MapFromDTOModel(role, session.Get<Role>(role.Id), session);
+            //    }
+            //}
+
         }
 
         /*

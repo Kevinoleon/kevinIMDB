@@ -1,9 +1,9 @@
 ﻿(function () {
     let myApp = angular.module('app');
 
-    let actorDetailsDelete = {
-        templateUrl: '/Angular/Actors/DetailsDelete/actorDetailsDelete.html',
-        controller: 'actorDetailsDeleteController'        
+    let movieDetailsDelete = {
+        templateUrl: '/Angular/Movies/DetailsDelete/movieDetailsDelete.html',
+        controller: 'movieDetailsDeleteController'        
     }
-    myApp.component('actorDetailsDelete', actorDetailsDelete);
+    myApp.component('movieDetailsDelete', movieDetailsDelete);
 })(angular);

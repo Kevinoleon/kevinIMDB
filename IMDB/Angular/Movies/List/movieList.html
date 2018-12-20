@@ -1,33 +1,33 @@
 ﻿
 <form class="form-inline row justify-content-end mb-2 ">
     <input class="form-control mr-2  " type="text" placeholder="Filter search..." ng-model="$ctrl.filter" />
-    <input class="form-control mr-2 btn btn-info btn-block " value="Create New" ui-sref="createActor({})">
+    <input class="form-control mr-2 btn btn-info btn-block " value="Create New" ui-sref="createMovie({})">
 </form>
 
 
 <div class="card-columns">
-    <div class="card" ng-repeat="actor in $ctrl.actors | filter:$ctrl.filter">
+    <div class="card" ng-repeat="movie in $ctrl.movies | filter:$ctrl.filter">
 
-        <img class="card-img-top  img-rounded" src="https://img.icons8.com/color/1600/person-male.png" height="300">
-        <h4 class="card-title text-secondary text-center">{{actor.Name}}</h4>
+        <img class="card-img-top  img-rounded" src="https://www.freeiconspng.com/uploads/movie-icon-11.png" height="300">
+        <h4 class="card-title text-secondary text-center">{{movie.OriginalTitle}}</h4>
         <div class="card-body">
             <dl class="dl-horizontal">
                 <dt>Birth Date: </dt>
-                <dd>{{actor.DateOfBirth | date}}</dd>
-                <dt>Nationality: </dt>
-                <dd>{{actor.Nationality}}</dd>
-                <dt>Roles: </dt>
+                <dd>{{movie.ReleaseDate | date}}</dd>
+                <dt>Country: </dt>
+                <dd>{{movie.Country}}</dd>
+                <dt>Characters: </dt>
                 <dd>
-                    <ul class="list-group list-unstyled" ng-repeat="role in actor.Roles">
+                    <ul class="list-group list-unstyled" ng-repeat="role in movie.Characters">
                         <li class="list-group-item  list-group-item-light"> {{role}}</li>
                     </ul>
                 </dd>
 
             </dl>
             <div class="row col-lg-12 btn-group" style="margin:0; padding:0">
-                <a class="btn btn-info col-lg-4  " ui-sref="actorDetail({id: actor.Id, btn: actor.Id})">Details</a>
-                <a class="btn btn-primary col-lg-4 " ui-sref="editActor({id: actor.Id})">Edit</a>
-                <input type="button" class="btn btn-danger col-lg-4 " value="Delete" ui-sref="deleteActor({id: actor.Id, btn:'delete'})" />
+                <a class="btn btn-info col-lg-4  " ui-sref="movieDetail({id: movie.Id, btn: movie.Id})">Details</a>
+                <a class="btn btn-primary col-lg-4 " ui-sref="editMovie({id: movie.Id})">Edit</a>
+                <input type="button" class="btn btn-danger col-lg-4 " value="Delete" ui-sref="deleteMovie({id: movie.Id})" />
             </div>
         </div>
     </div>
@@ -55,39 +55,39 @@
             <b>Id</b>
         </td>
         <td>
-            <b>Name</b>
+            <b>OriginalTitle</b>
         </td>
         <td>
-            <b>Nationality</b>
+            <b>Country</b>
         </td>
         <td>
-            <b>Roles</b>
+            <b>Characters</b>
         </td>
         <td>
             <b>Actions</b>
         </td>
     </tr>
-    <tr ng-repeat="actor in $ctrl.actors">
-        <td id="actorId">
-            {{actor.Id}}
+    <tr ng-repeat="movie in $ctrl.movies">
+        <td id="movieId">
+            {{movie.Id}}Acrtor
         </td>
         <td>
-            {{actor.Name}}
+            {{movie.OriginalTitle}}
         </td>
         <td>
-            {{actor.Nationality}}
+            {{movie.Country}}
         </td>
         <td>
-            <ul ng-repeat="role in actor.Roles">
+            <ul ng-repeat="role in movie.Characters">
                 <li> {{role}}</li>
             </ul>
 
         </td>
         <td>
             <div class="row col-lg-12 btn-group"style="margin:0; padding:0">
-                <a class="btn btn-info col-lg-4  " ui-sref="actorDetail({id: actor.Id})">Details</a>
-                <a class="btn btn-primary col-lg-4 " ui-sref="editActor({id: actor.Id})">Edit</a>
-                <input type="button" class="btn btn-danger col-lg-4 " value="Delete" ui-sref="deleteActor({id: actor.Id})" />
+                <a class="btn btn-info col-lg-4  " ui-sref="movieDetail({id: movie.Id})">Details</a>
+                <a class="btn btn-primary col-lg-4 " ui-sref="editMovie({id: movie.Id})">Edit</a>
+                <input type="button" class="btn btn-danger col-lg-4 " value="Delete" ui-sref="deleteMovie({id: movie.Id})" />
             </div>
 
 
@@ -99,6 +99,6 @@
 </table>
 <div class="container row"  >
     <div class="">
-        <a class="btn btn-success btn-block" >Create Actor</a>
+        <a class="btn btn-success btn-block" >Create Movie</a>
     </div>
 </div>-->

@@ -107,7 +107,6 @@ namespace IMDB.Controllers
 
             session.Transaction.Commit();
 
-
             ActorDtoMapper.MapModelToDto(sessionActor, actorDto);
 
             return Ok(actorDto);         

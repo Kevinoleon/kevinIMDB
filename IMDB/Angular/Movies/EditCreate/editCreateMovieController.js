@@ -1,34 +1,34 @@
 ﻿(function (angular) {
     let myApp = angular.module('app');
 
-    let editCreateActorController = function ($q, $stateParams, actorService, movieService) {
+    let editCreateMovieController = function ($q, $stateParams, movieService, actorService) {
 
         let $ctrl = this;
         $ctrl.IsVisible = false;
-        $ctrl.actorToCreate = {};
+        $ctrl.movieToCreate = {};
 
-        $ctrl.saveActor = function () {
+        $ctrl.saveMovie = function () {
             $ctrl.saving = true;
-            var savePromise = $ctrl.actor.Id
-                ? actorService.putRequest($ctrl.actor)
-                : actorService.postRequest($ctrl.actor);
-            savePromise.then(function (actor) {
-                $ctrl.actor = actor;
+            var savePromise = $ctrl.movie.Id
+                ? movieService.putRequest($ctrl.movie)
+                : movieService.postRequest($ctrl.movie);
+            savePromise.then(function (movie) {
+                $ctrl.movie = movie;
             }).finally(function () {
                 $ctrl.saving = false;
-                alert("actor saved!");
+                alert("movie saved!");
             });
         }
 
         function initialize() {
             $ctrl.initializing = true;
             $q.all({
-                movies: movieService.getMovies(),
-                actor: $stateParams.id ? actorService.getDetails($stateParams.id) : $q.when({ Roles: [] })
+                actors: actorService.getActors(),
+                movie: $stateParams.id ? movieService.getDetails($stateParams.id) : $q.when({ Characters: [] })
             }).then(function (results) {
-                $ctrl.actor = results.actor;
-                $ctrl.actor.DateOfBirth = new Date($ctrl.actor.DateOfBirth);
-                $ctrl.movies = results.movies;
+                $ctrl.movie = results.movie;
+                $ctrl.movie.DateOfBirth = new Date($ctrl.movie.DateOfBirth);
+                $ctrl.actors = results.actors;
             }).finally(function () {
                  $ctrl.initializing = false;
             });
@@ -38,9 +38,9 @@
     }
 
 
-    editCreateActorController.$inject = ['$q', '$stateParams', 'actorService', 'movieService'];
+    editCreateMovieController.$inject = ['$q', '$stateParams', 'movieService', 'actorService'];
 
-    myApp.controller("editCreateActorController", editCreateActorController);
+    myApp.controller("editCreateMovieController", editCreateMovieController);
 
 
 })(angular);

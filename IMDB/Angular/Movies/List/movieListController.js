@@ -1,21 +1,21 @@
 ﻿(function (angular) {
     let myApp = angular.module('app');
     
-    let actorController = function (actorService) {
+    let movieController = function (movieService) {
         let $ctrl = this;
-        //traer todos los actores
+        //traer todos los moviees
         function getAll() {
-            actorService.getActors().then(function (actors) {
-                    $ctrl.actors = actors;
+            movieService.getMovies().then(function (movies) {
+                    $ctrl.movies = movies;
                 });
         }                     
         getAll();
     }
 
 
-    actorController.$inject = ['actorService'];
+    movieController.$inject = ['movieService'];
 
-    myApp.controller("actorListController", actorController);  
+    myApp.controller("movieListController", movieController);  
 
       
 })(angular);

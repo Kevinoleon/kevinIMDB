@@ -9,7 +9,7 @@ namespace IMDB.Mappers
 {
     public class RoleDtoMapper
     {
-        public static RoleDTO MapToDTOModel(Role source, RoleDTO destination)
+        public static RoleDTO MapModelToDto(Role source, RoleDTO destination)
         {
             destination.Id = source.Id;
             destination.NameDto = source.Name;
@@ -20,7 +20,7 @@ namespace IMDB.Mappers
 
         }
 
-        public static Role MapFromDTOModel(RoleDTO source, Role destination, ISession session)
+        public static Role MapDtoToModel(RoleDTO source, Role destination, ISession session)
         {
             destination.Id = source.Id;
             destination.Name = source.NameDto;

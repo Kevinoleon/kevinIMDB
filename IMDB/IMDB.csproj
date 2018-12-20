@@ -267,6 +267,15 @@
     <Content Include="Angular\Actors\EditCreate\editCreateActor.html" />
     <Content Include="Angular\Actors\EditCreate\editCreateActor.js" />
     <Content Include="Angular\Actors\EditCreate\editCreateActorController.js" />
+    <Content Include="Angular\Movies\detailsDelete\movieDetailsDelete.html" />
+    <Content Include="Angular\Movies\detailsDelete\movieDetailsDelete.js" />
+    <Content Include="Angular\Movies\detailsDelete\movieDetailsDeleteController.js" />
+    <Content Include="Angular\Movies\EditCreate\editCreateMovie.html" />
+    <Content Include="Angular\Movies\EditCreate\editCreateMovie.js" />
+    <Content Include="Angular\Movies\EditCreate\editCreateMovieController.js" />
+    <Content Include="Angular\Movies\List\movieList.html" />
+    <Content Include="Angular\Movies\List\movieList.js" />
+    <Content Include="Angular\Movies\List\movieListController.js" />
     <Content Include="cambios_para_pasar_frontend_a_angular.txt" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />

@@ -1,7 +1,7 @@
 ﻿(function (angular) {
     let myApp = angular.module('app');
 
-    let actorDetailseleteController = function ($stateParams, actorService, $state) {
+    let actorDetailsDeleteController = function ($stateParams, actorService, $state) {
 
         let $ctrl = this;
         $ctrl.isDelete = true;
@@ -29,9 +29,9 @@
     }
 
 
-    actorDetailseleteController.$inject = ['$stateParams', 'actorService', '$state'];
+    actorDetailsDeleteController.$inject = ['$stateParams', 'actorService', '$state'];
 
-    myApp.controller("actorDetailsDeleteController", actorDetailseleteController);
+    myApp.controller("actorDetailsDeleteController", actorDetailsDeleteController);
 
 
 })(angular);

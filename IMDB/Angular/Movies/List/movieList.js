@@ -1,12 +1,12 @@
 ﻿(function () {
     let myApp = angular.module('app');
 
-    let actorList = {
-        templateUrl: '/Angular/Actors/List/actorList.html',
-        controller: 'actorListController',
+    let movieList = {
+        templateUrl: '/Angular/Movies/List/movieList.html',
+        controller: 'movieListController',
         bindings: {
-            Actores: '<'
+            Moviees: '<'
         }
     }
-    myApp.component('actorList', actorList); 
+    myApp.component('movieList', movieList); 
 })(angular);

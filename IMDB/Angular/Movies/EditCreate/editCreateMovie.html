@@ -1,24 +1,24 @@
-﻿<h2>{{$ctrl.actor.Id ? 'Edit Actor' : 'Create Actor' }}</h2>
-<form class="form-horizontal" name="actorForm">
+﻿<h2>{{$ctrl.movie.Id ? 'Edit Movie' : 'Create Movie' }}</h2>
+<form class="form-horizontal" name="movieForm">
     <div class="row">
         <div class="col-lg-5">
             <div class="form-group" >
-                <label class="control-label ">Name:</label>                    
-                <input type="text" class="form-control col-12" ng-model="$ctrl.actor.Name" placeholder="Enter Name" required>               
+                <label class="control-label ">OriginalTitle:</label>                    
+                <input type="text" class="form-control col-12" ng-model="$ctrl.movie.OriginalTitle" placeholder="Enter OriginalTitle" required>               
             </div>
             <div class="form-group">
-                <label class="control-label ">Nationality:</label>                
-                <input type="text" class="form-control col-12" ng-model="$ctrl.actor.Nationality" placeholder="Enter Nationality" required>                   
+                <label class="control-label ">Country:</label>                
+                <input type="text" class="form-control col-12" ng-model="$ctrl.movie.Country" placeholder="Enter Country" required>                   
             </div>
             <div class="form-group">
-                <label class="control-label ">Birth date:</label>                
-                <input type="date" class="form-control col-12" ng-model="$ctrl.actor.DateOfBirth" required>                    
+                <label class="control-label ">Release Date:</label>                
+                <input type="date" class="form-control col-12" ng-model="$ctrl.movie.ReleaseDate" required>                    
             </div>
             <div class="form-group">
-                <label class="control-label ">Actor photo:</label>                
+                <label class="control-label ">Movie photo:</label>                
                 <div class="image-upload offset-2">
                     <label for="file-input">
-                        <img src="https://img.icons8.com/color/1600/person-male.png" width="280" height="300" />
+                        <img src="https://www.freeiconspng.com/uploads/movie-icon-11.png" width="280" height="300" />
                     </label>
                     <input class="form-control" id="file-input" type="file" style="display: none;" />
                 </div>                
@@ -26,18 +26,18 @@
         </div>
         <div class="col-lg-7" >
             <div class=" form-group">
-                <button type="button" class="btn btn-outline-primary btn-block" ng-click="$ctrl.actor.Roles.push({})">Add Role</button>
-                <div class="bg-light my-2"  ng-repeat="role in $ctrl.actor.Roles">
+                <button type="button" class="btn btn-outline-primary btn-block" ng-click="$ctrl.movie.Characters.push({})">Add Role</button>
+                <div class="bg-light my-2"  ng-repeat="role in $ctrl.movie.Characters">
                     <div class="form-inline" >
                         <label class="col-2">Role:</label>
                         <input class="form-control col-4" type="text" placeholder="Role Name..." ng-model="role.NameDto" required />
-                        <label class=" col-2">Movie:  </label>
-                        <select class="form-control col-4" placeholder="Role movie..."
-                                ng-options="movie.Id as movie.OriginalTitle for movie in $ctrl.movies"
-                                ng-model="role.MovieId" ng-required="true"></select>
+                        <label class=" col-2">Actor:  </label>
+                        <select class="form-control col-4" placeholder="Role actor..."
+                                ng-options="actor.Id as actor.Name for actor in $ctrl.actors"
+                                ng-model="role.ActorId" ng-required="true"></select>
                     </div>
                     <div class="justify-content-end" >
-                        <button class="btn btn-danger col-4 offset-8 " ng-click="$ctrl.actor.Roles.splice($ctrl.actor.Roles.indexOf(role), 1)">Delete role</button>
+                        <button class="btn btn-danger col-4 offset-8 " ng-click="$ctrl.movie.Characters.splice($ctrl.movie.Characters.indexOf(role), 1)">Delete role</button>
                     </div>                    
                 </div>
                 
@@ -47,11 +47,11 @@
     <div class="row justify-content-end">
 
         <div class="col-lg-5 ">
-            <a class="btn btn-default btn-block btn-info " ng-click="$ctrl.saveActor()" ng-disabled="actorForm.$invalid">Save</a>
+            <a class="btn btn-default btn-block btn-info " ng-click="$ctrl.saveMovie()" ng-disabled="movieForm.$invalid">Save</a>
         </div>
 
         <div class="col-lg-5 ">
-            <a class="btn btn-default btn-block btn-outline-info" ui-sref="actors" ui-sref-opts="{reload:true}">Back to list!</a>
+            <a class="btn btn-default btn-block btn-outline-info" ui-sref="movies" ui-sref-opts="{reload:true}">Back to list!</a>
         </div>
     </div>
 </form>

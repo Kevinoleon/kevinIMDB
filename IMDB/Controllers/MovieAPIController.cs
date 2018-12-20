@@ -61,7 +61,7 @@ namespace IMDB.Controllers
             }
             var movieDto = new MovieDTO();
 
-            MovieDtoMapper.MapToDTOModel(sessionMovie, movieDto);
+            MovieDtoMapper.MapModelToDto(sessionMovie, movieDto);
             
 
             return Ok(movieDto);
@@ -83,11 +83,14 @@ namespace IMDB.Controllers
             }
 
             Movie movie = new Movie();
-            MovieDtoMapper.MapFromDTOModel(movieDto, movie, session);
+            MovieDtoMapper.MapDtoToModel(movieDto, movie, session);
 
             session.Transaction.Commit();
 
-            return Ok("Movie created");
+            MovieDtoMapper.MapModelToDto(movie, movieDto);
+
+
+            return Ok(movieDto);
         }
 
         // PUT: api/MovieDTO/5
@@ -108,16 +111,13 @@ namespace IMDB.Controllers
 
             //sessionMovie.MovieRoles.Clear()
 
-            MovieDtoMapper.MapFromDTOModel(movieDto, sessionMovie, session);
+            MovieDtoMapper.MapDtoToModel(movieDto, sessionMovie, session);
 
             session.Transaction.Commit();
-            
 
-            return Ok("Movie edited");         
+            MovieDtoMapper.MapModelToDto(sessionMovie, movieDto);
 
-
-
-            
+            return Ok(movieDto);          
 
         }
 

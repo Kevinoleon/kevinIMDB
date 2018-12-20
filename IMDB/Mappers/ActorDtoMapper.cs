@@ -17,7 +17,7 @@ namespace IMDB.Mappers
             destination.DateOfBirth = source.DateOfBirth;
             destination.Nationality = source.Nationality;
                         
-            destination.Roles = source.ActorRoles.Select(r => RoleDtoMapper.MapToDTOModel(r, new RoleDTO())).ToList();
+            destination.Roles = source.ActorRoles.Select(r => RoleDtoMapper.MapModelToDto(r, new RoleDTO())).ToList();
 
             //destination.Roles = source.ActorRoles.Select(r => new RoleDTO
             //{
@@ -45,7 +45,7 @@ namespace IMDB.Mappers
                 {
                     sourceRole.ActorId = destination.Id;
                     var destinationRole = (sourceRole.Id == 0 ? null : session.Get<Role>(sourceRole.Id)) ?? new Role();
-                    destination.ActorRoles.Add(RoleDtoMapper.MapFromDTOModel(sourceRole, destinationRole, session));
+                    destination.ActorRoles.Add(RoleDtoMapper.MapDtoToModel(sourceRole, destinationRole, session));
                 }
             }
         }
